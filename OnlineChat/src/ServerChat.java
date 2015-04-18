@@ -42,13 +42,17 @@ public class ServerChat {
 	public void startClients() throws IOException{
 		 while (true) {
 			 Socket client = server.accept();
-			 System.out.println("Client connected");
+			 System.out.println("Client " + currentNumberOfClients +" connected");
 			 ServiceChat service = new ServiceChat(client, this, currentNumberOfClients);
-			 services[currentNumberOfClients] = service;
-			 currentNumberOfClients++;
-			 Thread t = new Thread(service);
-			 t.start();
+			 addClientIntoServicesAndStartIt(service);
 		 }
+	}
+	
+	private void addClientIntoServicesAndStartIt(ServiceChat service) {
+		services[currentNumberOfClients] = service;
+		currentNumberOfClients++;
+		Thread t = new Thread(service);
+		t.start();
 	}
 	
 	public void printAll(String input) {
