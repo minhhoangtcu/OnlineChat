@@ -1,4 +1,4 @@
 
-public class OnlineChatModel {
+public class ServerChatModel {
 
 }

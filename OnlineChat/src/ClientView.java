@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 
-public class View extends JFrame {
+public class ClientView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -21,7 +21,7 @@ public class View extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View frame = new View();
+					ClientView frame = new ClientView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,8 @@ public class View extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public View() {
+	public ClientView() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
