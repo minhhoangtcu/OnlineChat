@@ -1,63 +1,71 @@
 import java.awt.BorderLayout;
+import java.awt.event.*;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.*;
 
+import java.awt.*;
 
-public class ClientView extends JFrame {
+public class ClientView extends JPanel implements ActionListener {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientView frame = new ClientView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	JPanel contentPane;
+	JTextArea result;
+	JTextField userInput;
+	Client client;
+	JButton sendButton;
+	JButton connectButton;
+	JScrollPane scroller = new JScrollPane();
+	JLabel errors = new JLabel();
 
 	/**
 	 * Create the frame.
 	 */
-	public ClientView() {
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+	public ClientView(Client client) {
+		this.client = client;
 		contentPane = new JPanel();
+		add(contentPane);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 11, 414, 221);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		result = new JTextArea(100,200);
+		result.setBounds(10, 11, 414, 221);
+		result.setColumns(10);
+		scroller.getViewport().add(result);
+		contentPane.add(scroller);
 		
-		JButton btnSend = new JButton("Send");
-		btnSend.setBounds(10, 238, 89, 23);
-		contentPane.add(btnSend);
+		sendButton = new JButton("Send");
+		sendButton.addActionListener(this);
+		sendButton.setEnabled(false);
+		sendButton.setBounds(10, 238, 89, 23);
+		contentPane.add(sendButton);
 		
-		JButton btnConnect = new JButton("Connect");
-		btnConnect.setBounds(104, 238, 89, 23);
-		contentPane.add(btnConnect);
+		JButton connectButton = new JButton("Connect");
+		connectButton.addActionListener(this);
+		connectButton.setBounds(104, 238, 89, 23);
+		contentPane.add(connectButton);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(203, 239, 221, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		userInput = new JTextField();
+		userInput.addActionListener(this);
+		userInput.setBounds(203, 239, 221, 22);
+		userInput.setColumns(10);
+		contentPane.add(userInput);
+		
+		contentPane.add(errors);
+	}
+	
+	public void actionPerformed(ActionEvent evt) {
+		if (evt.getActionCommand().equals("Connect") || 
+				connectButton.getText().equals("Connect") && evt.getSource() == userInput) {
+			client.connect();
+		} else if (evt.getActionCommand().equals("Disconnect")){
+			client.disconnect();
+		} else if (evt.getActionCommand().equals("Send") || 
+						sendButton.isEnabled() && evt.getSource() == userInput) {
+			client.send();
+		}
 	}
 }
