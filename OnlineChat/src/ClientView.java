@@ -41,12 +41,12 @@ public class ClientView extends JPanel {
 		tfSever.setColumns(10);
 		
 		tfPort = new JTextField();
-		tfPort.setBounds(268, 311, 86, 20);
+		tfPort.setBounds(223, 311, 131, 20);
 		add(tfPort);
 		tfPort.setColumns(10);
 		
-		JLabel lblPort = new JLabel("Port");
-		lblPort.setBounds(230, 313, 46, 14);
+		JLabel lblPort = new JLabel("ID");
+		lblPort.setBounds(202, 315, 46, 14);
 		lblPort.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		add(lblPort);
 		

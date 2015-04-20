@@ -12,14 +12,15 @@ public class Client extends JFrame implements ActionListener {
 	JTextArea result = new JTextArea();
 	JTextField userInput = new JTextField(20),
 			tfSever = new JTextField(),
-			tfPort = new JTextField();
+			tfID = new JTextField();
 	JButton connectButton = new JButton("Connect"),
 			sendButton = new JButton("Send");
 	JLabel errors = new JLabel(),
 			lbSever = new JLabel("Sever"),
-			lblPort = new JLabel("Port");
+			lbID = new JLabel("ID");
 	JScrollPane scroller = new JScrollPane();
 	Color purple = new Color (153, 0, 204);
+	final static int PORT = 6969;
 	JPanel contentPane;
 	Socket socket;
 	Scanner in;
@@ -128,25 +129,24 @@ public class Client extends JFrame implements ActionListener {
 		});
 		contentPane.add(tfSever);
 		
-		lblPort.setFont(new Font("SansSerif", Font.BOLD, 12));
-		lblPort.setBounds(230, 313, 46, 14);
-		lblPort.setForeground(purple);
-		contentPane.add(lblPort);
+		lbID.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lbID.setBounds(202, 315, 46, 14);
+		lbID.setForeground(purple);
+		contentPane.add(lbID);
 		
-		tfPort.setBounds(268, 311, 86, 20);
-		tfPort.setColumns(10);
-		tfPort.setBorder(BorderFactory.createLineBorder(purple,1));
-		tfPort.setText("6969");
-		tfPort.addMouseListener(new java.awt.event.MouseAdapter() {
+		tfID.setBounds(223, 311, 131, 20);
+		tfID.setColumns(10);
+		tfID.setBorder(BorderFactory.createLineBorder(purple,1));
+		tfID.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		        tfPort.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		        tfID.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 		    }
 
 		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		        tfPort.setBorder(BorderFactory.createLineBorder(purple,1));
+		        tfID.setBorder(BorderFactory.createLineBorder(purple,1));
 		    }
 		});
-		contentPane.add(tfPort);
+		contentPane.add(tfID);
 		}
 		contentPane.add(errors);
 	}
@@ -156,17 +156,13 @@ public class Client extends JFrame implements ActionListener {
 			if (evt.getActionCommand().equals("Connect") || 
 					connectButton.getText().equals("Connect") && evt.getSource() == userInput) {
 				String host = tfSever.getText();
-				if (host.equals("")) return;
-				int port;
-				try {
-					port = Integer.parseInt(tfPort.getText());
-				} catch (NumberFormatException e) {
-					return;
-				}
-				socket = new Socket(host, port);
+				String name = tfID.getText();
+				if (host.equals("") && name.equals("")) return;
+				socket = new Socket(host, PORT);
 				in = new Scanner(socket.getInputStream());
-				out = new PrintWriter(socket.getOutputStream(), false);
+				out = new PrintWriter(socket.getOutputStream());
 				thread = new ReadThread(in, result);
+				thread.setName(name);
 				thread.start();
 				sendButton.setEnabled(true);
 				sendButton.setContentAreaFilled(true);
@@ -185,7 +181,8 @@ public class Client extends JFrame implements ActionListener {
 			}
 			else if (evt.getActionCommand().equals("Send") || 
 						sendButton.isEnabled() && evt.getSource() == userInput) {
-				out.print(userInput.getText() + "\n");
+				out.println(userInput.getText());
+				out.println(thread.getName());
 				out.flush();
 				userInput.setText("");
 			}

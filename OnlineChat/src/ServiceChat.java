@@ -10,7 +10,7 @@ public class ServiceChat implements Runnable {
 	private PrintWriter out;
 	private int clientNumber;
 	
-	public ServiceChat(Socket client, ServerChat server, int clientNumber) {
+	public ServiceChat(Socket client, ServerChat server) {
 		this.client = client;
 		this.server = server;
 		this.clientNumber = clientNumber;
@@ -28,18 +28,18 @@ public class ServiceChat implements Runnable {
 		}
 	}
 	
-	public void print(String input, int currentNumber) {
-		out.println("Client " + currentNumber + ": " + input);
+	public void print(String input, String name) {
+		out.println(name + ": " + input);
 		out.flush();
 	}
 
 	private void doService() {
 		while (true) {
-			while (in.hasNext()) {
-				String input = in.nextLine();
-				System.out.println(input);
-				server.printAll(input, clientNumber);
-			}
+			String input = in.nextLine();
+			System.out.println(input);
+			String name = in.nextLine();
+			System.out.println("name: " + name);
+			server.printAll(input, name);
 		}
 	}
 }

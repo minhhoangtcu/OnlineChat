@@ -43,7 +43,7 @@ public class ServerChat {
 		 while (true) {
 			 Socket client = server.accept();
 			 System.out.println("Client " + currentNumberOfClients +" connected");
-			 ServiceChat service = new ServiceChat(client, this, currentNumberOfClients);
+			 ServiceChat service = new ServiceChat(client, this);
 			 addClientIntoServicesAndStartIt(service);
 		 }
 	}
@@ -55,9 +55,9 @@ public class ServerChat {
 		t.start();
 	}
 	
-	public void printAll(String input, int currentNumber) {
+	public void printAll(String input, String name) {
 		for (int i = 0; i < currentNumberOfClients; i++) {
-			services[i].print(input, currentNumber);
+			services[i].print(input, name);
 		}
 	}
 }
