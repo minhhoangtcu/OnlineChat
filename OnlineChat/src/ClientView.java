@@ -1,63 +1,57 @@
 import java.awt.BorderLayout;
+import java.awt.event.*;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.*;
 
+import java.awt.*;
 
-public class ClientView extends JFrame {
-
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientView frame = new ClientView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+public class ClientView extends JPanel {
+	private JTextField tfSever;
+	private JTextField tfPort;
 	public ClientView() {
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 11, 414, 221);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JTextArea result = new JTextArea();
+		result.setForeground(Color.BLACK);
+		result.setBounds(10, 11, 344, 258);
+		add(result);
 		
-		JButton btnSend = new JButton("Send");
-		btnSend.setBounds(10, 238, 89, 23);
-		contentPane.add(btnSend);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 280, 344, 24);
+		add(textArea);
 		
-		JButton btnConnect = new JButton("Connect");
-		btnConnect.setBounds(104, 238, 89, 23);
-		contentPane.add(btnConnect);
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(364, 281, 113, 23);
+		add(btnNewButton);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(203, 239, 221, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(364, 310, 113, 23);
+		add(btnNewButton_1);
+		
+		JLabel lbSever = new JLabel("Sever");
+		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lbSever.setBounds(10, 315, 50, 14);
+		add(lbSever);
+		
+		tfSever = new JTextField();
+		tfSever.setBounds(55, 311, 137, 20);
+		add(tfSever);
+		tfSever.setColumns(10);
+		
+		tfPort = new JTextField();
+		tfPort.setBounds(268, 311, 86, 20);
+		add(tfPort);
+		tfPort.setColumns(10);
+		
+		JLabel lblPort = new JLabel("Port");
+		lblPort.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lblPort.setBounds(230, 313, 46, 14);
+		add(lblPort);
 	}
 }

@@ -58,9 +58,9 @@ public class ServerChat {
 		t.start();
 	}
 	
-	public void printAll(String input) {
+	public void printAll(String input, int currentNumber) {
 		for (int i = 0; i < currentNumberOfClients; i++) {
-			services[i].print(input);
+			services[i].print(input, currentNumber);
 		}
 	}
 }
