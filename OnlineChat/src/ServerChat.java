@@ -4,6 +4,7 @@ import java.net.*;
 public class ServerChat {
 	ServiceChat[] services;
 	ServerSocket server;
+	ServerView view;
 	final int PORT = 6969;
 	final int MAX_NUMBER_OF_CLIENTS = 10;
 	int currentNumberOfClients;
@@ -14,6 +15,8 @@ public class ServerChat {
 	}
 	
 	public ServerChat() {
+		view = new ServerView();
+		view.setVisible(true);
 		services = new ServiceChat[MAX_NUMBER_OF_CLIENTS];
 		currentNumberOfClients = 0;
 		try {
