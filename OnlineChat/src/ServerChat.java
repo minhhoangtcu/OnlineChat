@@ -18,7 +18,7 @@ public class ServerChat {
 		currentNumberOfClients = 0;
 		try {
 			server = new ServerSocket(PORT);
-			System.out.print("Server initiated");
+			System.out.println("Server initiated");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,10 +42,22 @@ public class ServerChat {
 	public void startClients() throws IOException{
 		 while (true) {
 			 Socket client = server.accept();
-			 System.out.print("Client connected");
-			 ServiceChat service = new ServiceChat(client);
-			 Thread t = new Thread(service);
-			 t.start();
+			 System.out.println("Client " + currentNumberOfClients +" connected");
+			 ServiceChat service = new ServiceChat(client, this, currentNumberOfClients);
+			 addClientIntoServicesAndStartIt(service);
 		 }
+	}
+	
+	private void addClientIntoServicesAndStartIt(ServiceChat service) {
+		services[currentNumberOfClients] = service;
+		currentNumberOfClients++;
+		Thread t = new Thread(service);
+		t.start();
+	}
+	
+	public void printAll(String input) {
+		for (int i = 0; i < currentNumberOfClients; i++) {
+			services[i].print(input);
+		}
 	}
 }
