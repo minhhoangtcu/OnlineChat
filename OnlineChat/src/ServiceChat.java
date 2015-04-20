@@ -35,8 +35,8 @@ public class ServiceChat implements Runnable {
 
 	private void doService() {
 		while (true) {
-			if (in.hasNext()) {
-				String input = in.next();
+			while (in.hasNext()) {
+				String input = in.nextLine();
 				System.out.println(input);
 				server.printAll(input);
 			}
