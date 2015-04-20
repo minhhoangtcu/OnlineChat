@@ -28,8 +28,8 @@ public class ServiceChat implements Runnable {
 		}
 	}
 	
-	public void print(String input) {
-		out.println("Client " + clientNumber + ": " + input);
+	public void print(String input, int currentNumber) {
+		out.println("Client " + currentNumber + ": " + input);
 		out.flush();
 	}
 
@@ -38,7 +38,7 @@ public class ServiceChat implements Runnable {
 			while (in.hasNext()) {
 				String input = in.nextLine();
 				System.out.println(input);
-				server.printAll(input);
+				server.printAll(input, clientNumber);
 			}
 		}
 	}

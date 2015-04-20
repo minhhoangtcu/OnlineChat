@@ -53,12 +53,12 @@ public class Client extends JFrame implements ActionListener {
 				out.close();
 				sendButton.setEnabled(false);
 				connectButton.setText("Connect");
+				result.setText("");
 			}
 			else if (evt.getActionCommand().equals("Send") || 
 						sendButton.isEnabled() && evt.getSource() == userInput) {
 				out.print(userInput.getText() + "\n");
 				out.flush();
-				result.append("> " + userInput.getText() + '\n');
 				userInput.setText("");
 			}
 		} catch(UnknownHostException uhe) {
