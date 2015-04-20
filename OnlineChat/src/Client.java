@@ -10,14 +10,14 @@ import java.net.*;
 
 public class Client extends JFrame implements ActionListener {
 	JTextArea result = new JTextArea();
-	JTextField userInput = new JTextField(20);
-	JTextField tfSever = new JTextField();
-	JTextField tfPort = new JTextField();
-	JButton connectButton = new JButton("Connect");
-	JButton sendButton = new JButton("Send");
-	JLabel errors = new JLabel();
-	JLabel lbSever = new JLabel("Sever");
-	JLabel lblPort = new JLabel("Port");
+	JTextField userInput = new JTextField(20),
+			tfSever = new JTextField(),
+			tfPort = new JTextField();
+	JButton connectButton = new JButton("Connect"),
+			sendButton = new JButton("Send");
+	JLabel errors = new JLabel(),
+			lbSever = new JLabel("Sever"),
+			lblPort = new JLabel("Port");
 	JScrollPane scroller = new JScrollPane();
 	Color purple = new Color (153, 0, 204);
 	JPanel contentPane;
@@ -56,7 +56,6 @@ public class Client extends JFrame implements ActionListener {
 			scroller.getViewport().add(result);
 			scroller.setBounds(10, 11, 344, 258);
 			contentPane.add(add(scroller));
-			
 		}
 		{
 			contentPane.add(userInput); 

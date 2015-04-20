@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicTabbedPaneUI.TabbedPaneLayout;
 import javax.swing.*;
 
 import java.awt.*;
@@ -16,11 +17,6 @@ public class ClientView extends JPanel {
 	private JTextField tfPort;
 	public ClientView() {
 		setLayout(null);
-		
-		JTextArea result = new JTextArea();
-		result.setForeground(Color.BLACK);
-		result.setBounds(10, 11, 344, 258);
-		add(result);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 280, 344, 24);
@@ -35,8 +31,8 @@ public class ClientView extends JPanel {
 		add(btnNewButton_1);
 		
 		JLabel lbSever = new JLabel("Sever");
-		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lbSever.setBounds(10, 315, 50, 14);
+		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		add(lbSever);
 		
 		tfSever = new JTextField();
@@ -50,8 +46,18 @@ public class ClientView extends JPanel {
 		tfPort.setColumns(10);
 		
 		JLabel lblPort = new JLabel("Port");
-		lblPort.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblPort.setBounds(230, 313, 46, 14);
+		lblPort.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		add(lblPort);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.RIGHT, JTabbedPane.WRAP_TAB_LAYOUT);
+		tabbedPane.setBounds(10, 11, 416, 258);
+		add(tabbedPane);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("hiiiiiaifiaii", null, panel, null);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_1, null);
 	}
 }
