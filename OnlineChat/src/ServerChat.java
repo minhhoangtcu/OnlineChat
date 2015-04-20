@@ -1,12 +1,11 @@
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 
 public class ServerChat {
-	ServiceChat[] services;
+	ArrayList<ServiceChat> services;
 	ServerSocket server;
 	final int PORT = 6969;
-	final int MAX_NUMBER_OF_CLIENTS = 10;
-	int currentNumberOfClients;
 	
 	public static void main(String[] args) {
 		ServerChat server = new ServerChat();
@@ -14,8 +13,7 @@ public class ServerChat {
 	}
 	
 	public ServerChat() {
-		services = new ServiceChat[MAX_NUMBER_OF_CLIENTS];
-		currentNumberOfClients = 0;
+		services = new ArrayList<ServiceChat> ();
 		try {
 			server = new ServerSocket(PORT);
 			System.out.println("Server initiated");
@@ -42,22 +40,21 @@ public class ServerChat {
 	public void startClients() throws IOException{
 		 while (true) {
 			 Socket client = server.accept();
-			 System.out.println("Client " + currentNumberOfClients +" connected");
+			 System.out.println("Client " + services.size() +" connected");
 			 ServiceChat service = new ServiceChat(client, this);
 			 addClientIntoServicesAndStartIt(service);
 		 }
 	}
 	
 	private void addClientIntoServicesAndStartIt(ServiceChat service) {
-		services[currentNumberOfClients] = service;
-		currentNumberOfClients++;
+		services.add(service);
 		Thread t = new Thread(service);
 		t.start();
 	}
 	
 	public void printAll(String input, String name) {
-		for (int i = 0; i < currentNumberOfClients; i++) {
-			services[i].print(input, name);
+		for (ServiceChat service: services) {
+			service.print(input, name);
 		}
 	}
 }

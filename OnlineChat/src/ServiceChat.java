@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.*;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ServiceChat implements Runnable {
@@ -38,7 +39,6 @@ public class ServiceChat implements Runnable {
 			String input = in.nextLine();
 			System.out.println(input);
 			String name = in.nextLine();
-			System.out.println("name: " + name);
 			server.printAll(input, name);
 		}
 	}

@@ -19,7 +19,8 @@ public class Client extends JFrame implements ActionListener {
 			lbSever = new JLabel("Sever"),
 			lbID = new JLabel("ID");
 	JScrollPane scroller = new JScrollPane();
-	Color purple = new Color (153, 0, 204);
+	Color purple = new Color (124, 0, 166),
+			lightpurple = new Color (158, 90, 181);
 	final static int PORT = 6969;
 	JPanel contentPane;
 	Socket socket;
@@ -47,7 +48,7 @@ public class Client extends JFrame implements ActionListener {
 			result.setBorder(BorderFactory.createLineBorder(purple,1));
 			result.addMouseListener(new java.awt.event.MouseAdapter() {
 			    public void mouseEntered(java.awt.event.MouseEvent evt) {
-			        result.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+			        result.setBorder(BorderFactory.createLineBorder(lightpurple,1));
 			    }
 
 			    public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -65,7 +66,7 @@ public class Client extends JFrame implements ActionListener {
 			userInput.setBorder(BorderFactory.createLineBorder(purple,1));
 			userInput.addMouseListener(new java.awt.event.MouseAdapter() {
 			    public void mouseEntered(java.awt.event.MouseEvent evt) {
-			        userInput.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+			        userInput.setBorder(BorderFactory.createLineBorder(lightpurple,1));
 			    }
 
 			    public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -84,7 +85,7 @@ public class Client extends JFrame implements ActionListener {
 			sendButton.setForeground(Color.WHITE);
 			sendButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			    public void mouseEntered(java.awt.event.MouseEvent evt) {
-			        sendButton.setBackground(Color.BLACK);
+			        sendButton.setBackground(lightpurple);
 			    }
 
 			    public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -100,7 +101,7 @@ public class Client extends JFrame implements ActionListener {
 			connectButton.setForeground(Color.WHITE);
 			connectButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			    public void mouseEntered(java.awt.event.MouseEvent evt) {
-			        connectButton.setBackground(Color.BLACK);
+			        connectButton.setBackground(lightpurple);
 			    }
 
 			    public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -120,7 +121,7 @@ public class Client extends JFrame implements ActionListener {
 		tfSever.setText("localhost");
 		tfSever.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		        tfSever.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		        tfSever.setBorder(BorderFactory.createLineBorder(lightpurple,1));
 		    }
 
 		    public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -139,7 +140,7 @@ public class Client extends JFrame implements ActionListener {
 		tfID.setBorder(BorderFactory.createLineBorder(purple,1));
 		tfID.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		        tfID.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		        tfID.setBorder(BorderFactory.createLineBorder(lightpurple,1));
 		    }
 
 		    public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -157,7 +158,10 @@ public class Client extends JFrame implements ActionListener {
 					connectButton.getText().equals("Connect") && evt.getSource() == userInput) {
 				String host = tfSever.getText();
 				String name = tfID.getText();
-				if (host.equals("") && name.equals("")) return;
+				if (host.equals(null) || name.equals(null)) {
+					System.out.println("Should have stop");
+					return;
+				}
 				socket = new Socket(host, PORT);
 				in = new Scanner(socket.getInputStream());
 				out = new PrintWriter(socket.getOutputStream());
@@ -173,6 +177,7 @@ public class Client extends JFrame implements ActionListener {
 				thread.interrupt();
 				socket.close();
 				in.close();
+				out.print(false);
 				out.close();
 				sendButton.setEnabled(false);
 				sendButton.setContentAreaFilled(false);
