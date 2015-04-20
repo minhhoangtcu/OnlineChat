@@ -11,11 +11,12 @@ public class ClientView extends JFrame{
 	JButton connectButton;
 	JButton sendButton;
 	JLabel errors;
-	JLabel lbSever;
-	JLabel lblPort;
-	JScrollPane scroller;
-	JPanel contentPane;
+	private JLabel lbSever;
+	private JLabel lblPort;
+	private JScrollPane scroller;
+	private JPanel contentPane;
 	final Color PURPLE = new Color (153, 0, 204);
+	
 	
 	public static void main(String[] args) {
 		ClientView view = new ClientView();
