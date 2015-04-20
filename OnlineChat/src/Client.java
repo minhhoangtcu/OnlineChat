@@ -1,31 +1,78 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import java.net.*;
 
 public class Client extends JFrame implements ActionListener {
-	JTextArea result = new JTextArea(20,40);
+	JTextArea result = new JTextArea();
 	JTextField userInput = new JTextField(20);
 	JButton connectButton = new JButton("Connect");
 	JButton sendButton = new JButton("Send");
 	JLabel errors = new JLabel();
 	JScrollPane scroller = new JScrollPane();
+	JPanel contentPane;
 	Socket socket;
 	Scanner in;
 	PrintWriter out;
 	Thread thread;
 	
 	public Client() {
-		setLayout(new java.awt.FlowLayout());
-		setSize(500,430);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 315);
+		setResizable(false);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		scroller.getViewport().add(result);
-		add(scroller);
-		add(userInput); userInput.addActionListener(this);
-		add(sendButton); sendButton.addActionListener(this); sendButton.setEnabled(false);
-		add(connectButton); connectButton.addActionListener(this);
-		add(errors);
+		scroller.setBounds(10, 11, 414, 221);
+		contentPane.add(add(scroller));
+		{
+			contentPane.add(userInput); 
+			userInput.setBounds(203, 239, 221, 22);
+			userInput.setText("localhost 6969");
+			userInput.setColumns(10);
+			userInput.addActionListener(this);
+		}
+		{
+			contentPane.add(sendButton); 
+			sendButton.setBounds(10, 238, 89, 23);
+			sendButton.addActionListener(this); 
+			sendButton.setEnabled(false);
+			sendButton.setContentAreaFilled(false);
+			sendButton.setBackground(new Color (153, 0, 204));
+			sendButton.setForeground(Color.WHITE);
+			sendButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			        sendButton.setBackground(Color.BLACK);
+			    }
+
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			        sendButton.setBackground(new Color (153, 0, 204));
+			    }
+			});
+		}
+		{
+			contentPane.add(connectButton); 
+			connectButton.setBounds(104, 238, 89, 23);
+			connectButton.addActionListener(this);
+			connectButton.setBackground(new Color (153, 0, 204));
+			connectButton.setForeground(Color.WHITE);
+			connectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			        connectButton.setBackground(Color.BLACK);
+			    }
+
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			        connectButton.setBackground(new Color (153, 0, 204));
+			    }
+			});
+		}
+		contentPane.add(errors);
 	}
 	
 	public void actionPerformed(ActionEvent evt) {

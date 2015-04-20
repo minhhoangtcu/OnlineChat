@@ -58,14 +58,14 @@ public class ClientView extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent evt) {
-		if (evt.getActionCommand().equals("Connect") || 
-				connectButton.getText().equals("Connect") && evt.getSource() == userInput) {
-			client.connect();
-		} else if (evt.getActionCommand().equals("Disconnect")){
-			client.disconnect();
-		} else if (evt.getActionCommand().equals("Send") || 
-						sendButton.isEnabled() && evt.getSource() == userInput) {
-			client.send();
-		}
+//		if (evt.getActionCommand().equals("Connect") || 
+//				connectButton.getText().equals("Connect") && evt.getSource() == userInput) {
+//			client.connect();
+//		} else if (evt.getActionCommand().equals("Disconnect")){
+//			client.disconnect();
+//		} else if (evt.getActionCommand().equals("Send") || 
+//						sendButton.isEnabled() && evt.getSource() == userInput) {
+//			client.send();
+//		}
 	}
 }
