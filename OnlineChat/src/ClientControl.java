@@ -16,6 +16,7 @@ public class ClientControl implements MouseListener{
 	public ClientControl() {
 		view = new ClientView();
 		view.setVisible(true);
+		setUpListeners();
 	}
 	
 	public void setUpListeners() {

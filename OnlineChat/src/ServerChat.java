@@ -57,6 +57,7 @@ public class ServerChat {
 	
 	public void printAll(String input, String name) {
 		for (ServiceChat service: services) {
+			System.out.println("*");
 			service.print(input, name);
 		}
 	}

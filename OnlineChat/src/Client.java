@@ -26,6 +26,7 @@ public class Client extends JFrame implements ActionListener {
 	Scanner in;
 	PrintWriter out;
 	Thread thread;
+	ClientControl control;
 	
 	public Client() {
 		buildView();
@@ -75,7 +76,7 @@ public class Client extends JFrame implements ActionListener {
 			userInput.addActionListener(this);
 		}
 		{
-			contentPane.add(sendButton); 
+			contentPane.add(sendButton);
 			sendButton.setBounds(364, 281, 113, 23);
 			sendButton.addActionListener(this); 
 			sendButton.setEnabled(false);
@@ -212,8 +213,10 @@ class ReadThread extends Thread {
 	}
 	public void run() {
 		String s;
-		while ((s = in.nextLine()) != null) {
-			display.append(s + '\n');
-		}
+		try {
+			while ((s = in.nextLine()) != null) {
+				display.append(s + '\n');
+			}
+		} catch (NoSuchElementException e) {}
 	}
 }

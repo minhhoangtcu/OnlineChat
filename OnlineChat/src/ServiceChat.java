@@ -23,6 +23,8 @@ public class ServiceChat implements Runnable {
 			out = new PrintWriter(client.getOutputStream());
 			doService();
 			client.close();
+			int index = server.services.indexOf(this);
+			server.services.remove(index);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -36,7 +38,12 @@ public class ServiceChat implements Runnable {
 
 	private void doService() {
 		while (true) {
-			String input = in.nextLine();
+			String input;
+			try{
+				input = in.nextLine();
+			} catch (NoSuchElementException e) {
+				break;
+			}
 			System.out.println(input);
 			String name = in.nextLine();
 			server.printAll(input, name);
