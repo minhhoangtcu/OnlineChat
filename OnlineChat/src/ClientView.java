@@ -129,6 +129,7 @@ public class ClientView extends JFrame{
 	private void setUpIDTF() {
 		tfID = new JTextField();
 		tfID.setBounds(231, 311, 123, 20);
+		tfID.setBorder(BorderFactory.createLineBorder(PURPLE,1));
 		getContentPane().add(tfID);
 		tfID.setColumns(10);
 		contentPane.add(tfID);
