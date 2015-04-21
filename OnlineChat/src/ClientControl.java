@@ -24,7 +24,7 @@ public class ClientControl implements MouseListener{
 		view.result.addMouseListener(this);
 		view.userInput.addMouseListener(this);
 		view.tfSever.addMouseListener(this);
-		view.tfPort.addMouseListener(this);
+		view.tfID.addMouseListener(this);
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class ClientControl implements MouseListener{
 		else if (event.equals(view.result)) changeResultBorderWhenEntered();
 		else if (event.equals(view.userInput)) changeUserInputWhenEntered();
 		else if (event.equals(view.tfSever)) changeServerTFWhenEntered();
-		else if (event.equals(view.tfPort)) changePortTFWhenEntered();
+		else if (event.equals(view.tfID)) changeIDTFWhenEntered();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ClientControl implements MouseListener{
 		else if (event.equals(view.result)) changeResultBorderWhenExited();
 		else if (event.equals(view.userInput)) changeUserInputWhenExited();
 		else if (event.equals(view.tfSever)) changeServerTFWhenExited();
-		else if (event.equals(view.tfPort)) changePortTFWhenExited();
+		else if (event.equals(view.tfID)) changeIDTFWhenExited();
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ClientControl implements MouseListener{
 	}	
 	
 	private void changeConnectButtonWhenEntered() {
-		view.connectButton.setBackground(Color.BLACK);
+		view.connectButton.setBackground(view.LIGHTPURPLE);
 	}
 	
 	private void changeConnectButtonWhenExited() {
@@ -75,7 +75,7 @@ public class ClientControl implements MouseListener{
 	}
 	
 	private void changeSendButtonWhenEntered() {
-		view.sendButton.setBackground(Color.BLACK);
+		view.sendButton.setBackground(view.LIGHTPURPLE);
 	}
 	
 	private void changeSendButtonWhenExited() {
@@ -83,7 +83,7 @@ public class ClientControl implements MouseListener{
 	}
 	
 	private void changeResultBorderWhenEntered() {
-		view.result.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		view.result.setBorder(BorderFactory.createLineBorder(view.LIGHTPURPLE,1));
 	}
 	
 	private void changeResultBorderWhenExited() {
@@ -91,7 +91,7 @@ public class ClientControl implements MouseListener{
 	}
 	
 	private void changeUserInputWhenEntered() {
-		view.userInput.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		view.userInput.setBorder(BorderFactory.createLineBorder(view.LIGHTPURPLE,1));
 	}
 	
 	private void changeUserInputWhenExited() {
@@ -99,18 +99,18 @@ public class ClientControl implements MouseListener{
 	}
 	
 	private void changeServerTFWhenEntered() {
-		view.tfSever.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+		view.tfSever.setBorder(BorderFactory.createLineBorder(view.LIGHTPURPLE,1));
 	}
 	
 	private void changeServerTFWhenExited() {
 		view.tfSever.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
 	}
 	
-	private void changePortTFWhenEntered() {
-		view.tfPort.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+	private void changeIDTFWhenEntered() {
+		view.tfID.setBorder(BorderFactory.createLineBorder(view.LIGHTPURPLE,1));
 	}
 	
-	private void changePortTFWhenExited() {
-		view.tfPort.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
+	private void changeIDTFWhenExited() {
+		view.tfID.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
 	}
 }

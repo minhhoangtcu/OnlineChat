@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.*;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -17,15 +18,16 @@ public class ClientView extends JFrame{
 	JTextArea result;
 	JTextField userInput;
 	JTextField tfSever;
-	JTextField tfPort;
+	JTextField tfID;
 	JButton connectButton;
 	JButton sendButton;
 	JLabel errors;
 	private JLabel lbSever;
-	private JLabel lblPort;
+	private JLabel lblID;
 	private JScrollPane scroller;
 	private JPanel contentPane;
-	final Color PURPLE = new Color (153, 0, 204);
+	final Color PURPLE = new Color (153, 0, 204),
+			LIGHTPURPLE = new Color (158, 90, 181);
 	
 	
 	public static void main(String[] args) {
@@ -48,8 +50,8 @@ public class ClientView extends JFrame{
 		setUpConnectButton();
 		setUpServerLabel();
 		setUpServerTF();
-		setUpPortLabel();
-		setUpPortTF();
+		setUpIDLabel();
+		setUpIDTF();
 		setUpError();
 	}
 	
@@ -66,9 +68,9 @@ public class ClientView extends JFrame{
 		result = new JTextArea();
 		scroller = new JScrollPane();
 		result.setBorder(BorderFactory.createLineBorder(PURPLE,1));
-		scroller.getViewport().add(result);
+		scroller.setViewportView(result);
 		scroller.setBounds(10, 11, 344, 258);
-		contentPane.add(add(scroller));
+		contentPane.add(getContentPane().add(scroller));
 	}
 		
 	private void setUpUserInput() {
@@ -102,7 +104,7 @@ public class ClientView extends JFrame{
 		lbSever.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbSever.setBounds(10, 315, 50, 14);
 		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		add(lbSever);
+		getContentPane().add(lbSever);
 		lbSever.setForeground(PURPLE);
 		contentPane.add(lbSever);
 	}
@@ -116,37 +118,32 @@ public class ClientView extends JFrame{
 		contentPane.add(tfSever);
 	}
 		
-	private void setUpPortLabel() {
-		lblPort = new JLabel("Port");
-		lblPort.setFont(new Font("SansSerif", Font.BOLD, 12));
-		lblPort.setBounds(230, 313, 46, 14);
-		lblPort.setForeground(PURPLE);
-		contentPane.add(lblPort);
+	private void setUpIDLabel() {
+		lblID = new JLabel("ID");
+		lblID.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblID.setBounds(202, 313, 46, 14);
+		lblID.setForeground(PURPLE);
+		contentPane.add(lblID);
 	}
 	
-	private void setUpPortTF() {
-		tfPort = new JTextField();
-		tfPort.setBounds(223, 311, 131, 20);
-		add(tfPort);
-		tfPort.setBounds(268, 311, 86, 20);
-		tfPort.setColumns(10);
-		JLabel lblPort = new JLabel("ID");
-		lblPort.setBounds(202, 315, 46, 14);
-		lblPort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		add(lblPort);
+	private void setUpIDTF() {
+		tfID = new JTextField();
+		tfID.setBounds(231, 311, 123, 20);
+		getContentPane().add(tfID);
+		tfID.setColumns(10);
+		contentPane.add(tfID);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.RIGHT, JTabbedPane.WRAP_TAB_LAYOUT);
-		tabbedPane.setBounds(10, 11, 416, 258);
-		add(tabbedPane);
+//		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.RIGHT, JTabbedPane.WRAP_TAB_LAYOUT);
+//		tabbedPane.setBounds(10, 11, 416, 258);
+//		getContentPane().add(tabbedPane);
+//		
+//		JPanel panel = new JPanel();
+//		tabbedPane.addTab("hiiiiiaifiaii", null, panel, null);
+//		
+//		JPanel panel_1 = new JPanel();
+//		tabbedPane.addTab("New tab", null, panel_1, null);
+//		tfID.setBorder(BorderFactory.createLineBorder(PURPLE,1));
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("hiiiiiaifiaii", null, panel, null);
-		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
-		tfPort.setBorder(BorderFactory.createLineBorder(PURPLE,1));
-		tfPort.setText("6969");
-		contentPane.add(tfPort);
 	}
 	
 	private void setUpError() {
