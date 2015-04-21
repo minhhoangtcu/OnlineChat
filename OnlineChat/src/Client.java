@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;

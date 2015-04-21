@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ServerChat {
 	ArrayList<ServiceChat> services;
 	ServerSocket server;
+	ServerView view;
 	final int PORT = 6969;
 	
 	public static void main(String[] args) {
@@ -14,6 +15,8 @@ public class ServerChat {
 	
 	public ServerChat() {
 		services = new ArrayList<ServiceChat> ();
+		view = new ServerView();
+		view.setVisible(true);
 		try {
 			server = new ServerSocket(PORT);
 			System.out.println("Server initiated");
