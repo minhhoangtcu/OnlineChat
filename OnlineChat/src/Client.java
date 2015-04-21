@@ -34,14 +34,12 @@ public class Client {
 		} catch(IOException ioe) {
 			control.view.errors.setText(ioe.getMessage());
 		}
-		thread = new ReadThread(in, control.view.result);
+		thread = new ReadThread(in, control.view.result, this);
 		thread.setName(name);
 		thread.start();
 		
 		changeViewAfterConnect(name);
 	}
-	
-	
 	
 	public void disconnect() {
 		thread.interrupt();
@@ -58,13 +56,15 @@ public class Client {
 		changeViewAfterDisconnect();
 	}
 	
-	
-	
 	public void send() {
 		out.println(control.view.userInput.getText());
-		out.println(thread.getName());
 		out.flush();
 		changeViewAfterSend();
+	}
+	
+	public void sendName() {
+		out.println(thread.getName());
+		out.flush();
 	}
 	
 	private void changeViewAfterConnect(String name) {

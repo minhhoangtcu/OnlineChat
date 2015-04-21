@@ -8,17 +8,20 @@ import javax.swing.JTextArea;
 class ReadThread extends Thread {
 	Scanner in;
 	JTextArea display;
+	Client client;
 	
-	public ReadThread(Scanner in, JTextArea display) {
+	public ReadThread(Scanner in, JTextArea display, Client client) {
 		this.in = in;
 		this.display = display;
+		this.client = client;
 	}
 	
 	public void run() {
 		String s;
 		try {
 			while ((s = in.nextLine()) != null) {
-				display.append(s + '\n');
+				if (s.equals(SpecialCommands.getName)) client.sendName();
+				else display.append(s + '\n');
 			}
 		} catch (NoSuchElementException e) {}
 	}
