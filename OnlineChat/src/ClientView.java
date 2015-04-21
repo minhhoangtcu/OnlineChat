@@ -39,7 +39,7 @@ public class ClientView extends JFrame{
 	}
 	
 	private void buildView() {
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 490, 375);
 		setResizable(false);
 		setUpContentPane();

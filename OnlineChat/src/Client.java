@@ -23,7 +23,7 @@ public class Client {
 	public void connect() {
 		String host = control.view.tfSever.getText();
 		String name = control.view.tfID.getText();
-		if (host.equals(null) || name.equals(null)) {
+		if (host.equals("") || name.equals("")) {
 			return;
 		}
 		try{
