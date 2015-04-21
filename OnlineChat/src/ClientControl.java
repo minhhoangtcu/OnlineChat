@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;
 
-public class ClientControl implements MouseListener, ActionListener{
+public class ClientControl implements MouseListener, ActionListener, KeyListener{
 	
 	ClientView view;
 	Client client;
@@ -135,5 +137,22 @@ public class ClientControl implements MouseListener, ActionListener{
 	
 	private void changeIDTFWhenExited() {
 		view.tfID.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

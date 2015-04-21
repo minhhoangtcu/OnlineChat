@@ -29,8 +29,8 @@ public class ServiceChat implements Runnable {
 		}
 	}
 	
-	public void print(String input) {
-		out.println(getName() + ": " + input);
+	public void print(String input, String name) {
+		out.println(name + ": " + input);
 		out.flush();
 	}
 	
@@ -49,7 +49,7 @@ public class ServiceChat implements Runnable {
 			} catch (NoSuchElementException e) {
 				break;
 			}
-			server.printAll(input);
+			server.printAll(input, getName());
 		}
 	}
 }
