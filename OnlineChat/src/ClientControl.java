@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 
-public class ClientControl implements MouseListener, ActionListener, KeyListener{
+public class ClientControl implements MouseListener, ActionListener{
 	
 	ClientView view;
 	Client client;
@@ -30,6 +30,8 @@ public class ClientControl implements MouseListener, ActionListener, KeyListener
 		view.tfID.addMouseListener(this);
 		view.connectButton.addActionListener(this);
 		view.sendButton.addActionListener(this);
+		view.userInput.addActionListener(this);
+		view.tfID.addActionListener(this);
 	}
 	
 
@@ -73,13 +75,13 @@ public class ClientControl implements MouseListener, ActionListener, KeyListener
 	
 	public void actionPerformed(ActionEvent e) {
 		Object event = e.getSource();
-		if (event.equals(view.connectButton) && !isConnect) {
+		if (event.equals(view.connectButton) && !isConnect || event == view.tfID) {
 			client.connect();
 		}
 		else if (event.equals(view.connectButton) && isConnect) {
 			client.disconnect();
 		}
-		else if (event.equals(view.sendButton)) {
+		else if (event.equals(view.sendButton) || event == view.userInput) {
 			client.send();
 		}
 	}
@@ -136,20 +138,5 @@ public class ClientControl implements MouseListener, ActionListener, KeyListener
 		view.tfID.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
+

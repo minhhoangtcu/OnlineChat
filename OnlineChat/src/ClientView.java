@@ -133,18 +133,6 @@ public class ClientView extends JFrame{
 		getContentPane().add(tfID);
 		tfID.setColumns(10);
 		contentPane.add(tfID);
-		
-//		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.RIGHT, JTabbedPane.WRAP_TAB_LAYOUT);
-//		tabbedPane.setBounds(10, 11, 416, 258);
-//		getContentPane().add(tabbedPane);
-//		
-//		JPanel panel = new JPanel();
-//		tabbedPane.addTab("hiiiiiaifiaii", null, panel, null);
-//		
-//		JPanel panel_1 = new JPanel();
-//		tabbedPane.addTab("New tab", null, panel_1, null);
-//		tfID.setBorder(BorderFactory.createLineBorder(PURPLE,1));
-		
 	}
 	
 	private void setUpError() {

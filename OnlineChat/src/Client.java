@@ -74,6 +74,7 @@ public class Client {
 		control.view.connectButton.setText("Disconnect");
 		control.setConnected(true);
 		control.view.userInput.setText("");
+		control.view.tfID.setEnabled(false);
 	}
 	
 	private void changeViewAfterDisconnect() {
@@ -83,6 +84,7 @@ public class Client {
 		control.setConnected(false);
 		control.view.result.setText("");
 		control.view.userInput.setText("");
+		control.view.tfID.setEnabled(true);
 	}
 	
 	private void changeViewAfterSend() {
