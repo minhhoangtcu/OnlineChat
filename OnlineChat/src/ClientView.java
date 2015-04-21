@@ -32,6 +32,7 @@ public class ClientView extends JFrame{
 	
 	public static void main(String[] args) {
 		ClientView view = new ClientView();
+		view.setVisible(true);
 	}
 	
 	public ClientView() {
