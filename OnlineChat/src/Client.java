@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.net.*;
@@ -42,14 +41,7 @@ public class Client {
 		changeViewAfterConnect(name);
 	}
 	
-	public void changeViewAfterConnect(String name) {
-		control.view.sendButton.setEnabled(true);
-		control.view.sendButton.setContentAreaFilled(true);
-		control.view.setTitle(name);
-		control.view.connectButton.setText("Disconnect");
-		control.setConnected(true);
-		control.view.userInput.setText("");
-	}
+	
 	
 	public void disconnect() {
 		thread.interrupt();
@@ -66,14 +58,7 @@ public class Client {
 		changeViewAfterDisconnect();
 	}
 	
-	public void changeViewAfterDisconnect() {
-		control.view.sendButton.setEnabled(false);
-		control.view.sendButton.setContentAreaFilled(false);
-		control.view.connectButton.setText("Connect");
-		control.setConnected(false);
-		control.view.result.setText("");
-		control.view.userInput.setText("");
-	}
+	
 	
 	public void send() {
 		out.println(control.view.userInput.getText());
@@ -82,24 +67,27 @@ public class Client {
 		changeViewAfterSend();
 	}
 	
-	public void changeViewAfterSend() {
+	private void changeViewAfterConnect(String name) {
+		control.view.sendButton.setEnabled(true);
+		control.view.sendButton.setContentAreaFilled(true);
+		control.view.setTitle(name);
+		control.view.connectButton.setText("Disconnect");
+		control.setConnected(true);
+		control.view.userInput.setText("");
+	}
+	
+	private void changeViewAfterDisconnect() {
+		control.view.sendButton.setEnabled(false);
+		control.view.sendButton.setContentAreaFilled(false);
+		control.view.connectButton.setText("Connect");
+		control.setConnected(false);
+		control.view.result.setText("");
+		control.view.userInput.setText("");
+	}
+	
+	private void changeViewAfterSend() {
 		control.view.userInput.setText("");
 	}
 }
 
-class ReadThread extends Thread {
-	Scanner in;
-	JTextArea display;
-	public ReadThread(Scanner br, JTextArea jta) {
-		in = br;
-		display = jta;
-	}
-	public void run() {
-		String s;
-		try {
-			while ((s = in.nextLine()) != null) {
-				display.append(s + '\n');
-			}
-		} catch (NoSuchElementException e) {}
-	}
-}
+
