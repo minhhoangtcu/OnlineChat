@@ -9,12 +9,10 @@ public class ServiceChat implements Runnable {
 	private ServerChat server;
 	private Scanner in;
 	private PrintWriter out;
-	private int clientNumber;
 	
 	public ServiceChat(Socket client, ServerChat server) {
 		this.client = client;
 		this.server = server;
-		this.clientNumber = clientNumber;
 	}
 
 	public void run() {
@@ -44,7 +42,6 @@ public class ServiceChat implements Runnable {
 			} catch (NoSuchElementException e) {
 				break;
 			}
-			System.out.println(input);
 			String name = in.nextLine();
 			server.printAll(input, name);
 		}

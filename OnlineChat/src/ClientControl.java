@@ -12,12 +12,10 @@ public class ClientControl implements MouseListener, ActionListener{
 	
 	ClientView view;
 	Client client;
-	
-//	public static void main(String[] args) {
-//		ClientControl control = new ClientControl();
-//	}
+	private boolean isConnect;
 	
 	public ClientControl(Client client) {
+		isConnect = false;
 		this.client = client;
 		view = new ClientView();
 		view.setVisible(true);
@@ -74,18 +72,21 @@ public class ClientControl implements MouseListener, ActionListener{
 		// TODO Auto-generated method stub
 	}
 	
-	public void actionPerformed(ActionEvent evt) {
-		if (evt.getActionCommand().equals("Connect") || 
-				view.connectButton.getText().equals("Connect") && evt.getSource() == view.userInput) {
+	public void actionPerformed(ActionEvent e) {
+		Object event = e.getSource();
+		if (event.equals(view.connectButton) && !isConnect) {
 			client.connect();
 		}
-		else if (evt.getActionCommand().equals("Disconnect")) {
+		else if (event.equals(view.connectButton) && isConnect) {
 			client.disconnect();
 		}
-		else if (evt.getActionCommand().equals("Send") || 
-					view.sendButton.isEnabled() && evt.getSource() == view.userInput) {
+		else if (event.equals(view.sendButton)) {
 			client.send();
 		}
+	}
+	
+	public void setConnected(boolean state) {
+		isConnect = state;
 	}
 	
 	private void changeConnectButtonWhenEntered() {
