@@ -1,19 +1,24 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;
 
-public class ClientControl implements MouseListener{
+public class ClientControl implements MouseListener, ActionListener{
 	
-	private ClientView view;
+	ClientView view;
+	Client client;
 	
-	public static void main(String[] args) {
-		ClientControl control = new ClientControl();
-		control.setUpListeners();
-	}
+//	public static void main(String[] args) {
+//		ClientControl control = new ClientControl();
+//	}
 	
-	public ClientControl() {
+	public ClientControl(Client client) {
+		this.client = client;
 		view = new ClientView();
 		view.setVisible(true);
 		setUpListeners();
@@ -26,15 +31,17 @@ public class ClientControl implements MouseListener{
 		view.userInput.addMouseListener(this);
 		view.tfSever.addMouseListener(this);
 		view.tfID.addMouseListener(this);
+		view.connectButton.addActionListener(this);
+		view.sendButton.addActionListener(this);
 	}
 	
-	@Override
+
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void mouseEntered(MouseEvent e) {
 		Object event = e.getSource();
 		if (event.equals(view.connectButton)) changeConnectButtonWhenEntered();
@@ -45,7 +52,7 @@ public class ClientControl implements MouseListener{
 		else if (event.equals(view.tfID)) changeIDTFWhenEntered();
 	}
 
-	@Override
+	
 	public void mouseExited(MouseEvent e) {
 		Object event = e.getSource();
 		if (event.equals(view.connectButton)) changeConnectButtonWhenExited();
@@ -56,16 +63,30 @@ public class ClientControl implements MouseListener{
 		else if (event.equals(view.tfID)) changeIDTFWhenExited();
 	}
 
-	@Override
+	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-	}	
+	}
+	
+	public void actionPerformed(ActionEvent evt) {
+		if (evt.getActionCommand().equals("Connect") || 
+				view.connectButton.getText().equals("Connect") && evt.getSource() == view.userInput) {
+			client.connect();
+		}
+		else if (evt.getActionCommand().equals("Disconnect")) {
+			client.disconnect();
+		}
+		else if (evt.getActionCommand().equals("Send") || 
+					view.sendButton.isEnabled() && evt.getSource() == view.userInput) {
+			client.send();
+		}
+	}
 	
 	private void changeConnectButtonWhenEntered() {
 		view.connectButton.setBackground(view.LIGHTPURPLE);

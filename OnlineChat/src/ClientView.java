@@ -26,13 +26,12 @@ public class ClientView extends JFrame{
 	private JLabel lblID;
 	private JScrollPane scroller;
 	private JPanel contentPane;
-	final Color PURPLE = new Color (153, 0, 204),
-			LIGHTPURPLE = new Color (158, 90, 181);
+	final Color PURPLE = new Color (122, 0, 163),
+			LIGHTPURPLE = new Color (181, 113, 204);
 	
 	
 	public static void main(String[] args) {
 		ClientView view = new ClientView();
-		view.setVisible(true);
 	}
 	
 	public ClientView() {
