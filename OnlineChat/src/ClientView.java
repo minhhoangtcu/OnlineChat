@@ -36,6 +36,7 @@ public class ClientView extends JFrame{
 	
 	public ClientView() {
 		buildView();
+		setVisible(true);
 	}
 	
 	private void buildView() {
