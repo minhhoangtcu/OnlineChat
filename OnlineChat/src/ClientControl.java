@@ -17,7 +17,6 @@ public class ClientControl implements MouseListener, ActionListener{
 		isConnect = false;
 		this.client = client;
 		view = new ClientView();
-		view.setVisible(true);
 		setUpListeners();
 	}
 	
