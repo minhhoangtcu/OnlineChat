@@ -24,14 +24,14 @@ public class ServerView extends JFrame {
 	public void setUpContentPane() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 600);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.BLACK);
 	}
 	
 	public void setUpTextArea() {
 		output = new JTextArea();
-		output.setBounds(10, 11, 424, 213);
+		output.setBounds(10, 11, 574, 513);
 		output.setBackground(Color.DARK_GRAY);
 		output.setForeground(Color.WHITE);
 		getContentPane().add(output, BorderLayout.CENTER);
@@ -41,7 +41,7 @@ public class ServerView extends JFrame {
 		input = new JTextField();
 		input.setBackground(Color.DARK_GRAY);
 		input.setForeground(Color.WHITE);
-		input.setBounds(10, 235, 424, 25);
+		input.setBounds(10, 535, 574, 25);
 		input.setColumns(10);
 		getContentPane().add(input);
 	}

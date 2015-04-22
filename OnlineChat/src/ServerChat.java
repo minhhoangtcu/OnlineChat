@@ -18,6 +18,7 @@ public class ServerChat {
 		services = new ArrayList<ServiceChat> ();
 		control = new ServerControl();
 		currentClient = 0;
+		control.appendText("Server started. Type \"help\" to show more commands. \n");
 		try {
 			server = new ServerSocket(PORT);
 			System.out.println("Server initiated");
@@ -57,6 +58,9 @@ public class ServerChat {
 		control.appendText("Client " + service.getID() + " connected" + "\n");
 	}
 	
+	/*
+	 * Call each of the service and tell them to print
+	 */
 	public void printAll(String input, String name) {
 		control.appendText(name + ": " + input + "\n");
 		for (ServiceChat service: services) {

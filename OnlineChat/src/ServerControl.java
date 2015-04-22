@@ -19,7 +19,10 @@ public class ServerControl implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object event = e.getSource();
 		if (event.equals(view.input)) {
-			
+			String text = view.input.getText();
+			appendText(text);
+			checkIfInputIsSpecialThenProceed(text);
+			view.input.setText("");
 		}
 	}
 
@@ -27,6 +30,10 @@ public class ServerControl implements ActionListener{
 		view.output.append(text);
 	}
 	
-	
-
+	public void checkIfInputIsSpecialThenProceed(String text) {
+		text = text.toLowerCase();
+		if (text.equals("help")) {
+			
+		}
+	}
 }
