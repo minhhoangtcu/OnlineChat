@@ -2,13 +2,15 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 
+import javax.swing.JPanel;
+
 public class Client {
 	private final static int PORT = 6969;
 	private Socket socket;
 	private Scanner in;
 	private PrintWriter out;
 	private Thread thread;
-	private ClientControl control;
+	ClientControl control;
 	
 	public static void main(String[] args) {
 		Client display = new Client();
@@ -16,6 +18,8 @@ public class Client {
 	
 	public Client() {
 		control = new ClientControl(this);
+		control.view.buildView();
+		control.view.setVisible(true);
 	}
 	
 	public void connect() {
@@ -70,7 +74,7 @@ public class Client {
 	private void changeViewAfterConnect(String name) {
 		control.view.sendButton.setEnabled(true);
 		control.view.sendButton.setContentAreaFilled(true);
-		control.view.setTitle(name);
+		//control.view.setTitle(name);
 		control.view.connectButton.setText("Disconnect");
 		control.setConnected(true);
 		control.view.userInput.setText("");

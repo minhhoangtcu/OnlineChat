@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 
-public class ClientView extends JFrame{
+public class ClientView extends JPanel{
 	JTextArea result;
 	JTextField userInput;
 	JTextField tfSever;
@@ -32,7 +32,6 @@ public class ClientView extends JFrame{
 	
 	public static void main(String[] args) {
 		ClientView view = new ClientView();
-		view.setVisible(true);
 	}
 	
 	public ClientView() {
@@ -40,10 +39,8 @@ public class ClientView extends JFrame{
 		setVisible(true);
 	}
 	
-	private void buildView() {
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	public void buildView() {
 		setBounds(100, 100, 490, 375);
-		setResizable(false);
 		setUpContentPane();
 		setUpResult();
 		setUpUserInput();
@@ -57,12 +54,11 @@ public class ClientView extends JFrame{
 	}
 	
 	private void setUpContentPane() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setOpaque(true);
-		contentPane.setBackground(new Color(250, 250, 250));
-		contentPane.setLayout(null);
-		setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setOpaque(true);
+		setBackground(new Color(250, 250, 250));
+		setLayout(null);
+		setVisible(true);
 	}
 
 	private void setUpResult() {
@@ -71,7 +67,7 @@ public class ClientView extends JFrame{
 		result.setBorder(BorderFactory.createLineBorder(PURPLE,1));
 		scroller.setViewportView(result);
 		scroller.setBounds(10, 11, 344, 258);
-		contentPane.add(getContentPane().add(scroller));
+		add(scroller);
 	}
 		
 	private void setUpUserInput() {
@@ -79,7 +75,7 @@ public class ClientView extends JFrame{
 		userInput.setBounds(10, 280, 344, 24);
 		userInput.setColumns(10);
 		userInput.setBorder(BorderFactory.createLineBorder(PURPLE,1));
-		contentPane.add(userInput);
+		add(userInput);
 	}
 	
 	private void setUpSendButton() {
@@ -89,7 +85,7 @@ public class ClientView extends JFrame{
 		sendButton.setContentAreaFilled(false);
 		sendButton.setBackground(PURPLE);
 		sendButton.setForeground(Color.WHITE);
-		contentPane.add(sendButton); 
+		add(sendButton); 
 	}
 			
 	private void setUpConnectButton() {
@@ -97,7 +93,7 @@ public class ClientView extends JFrame{
 		connectButton.setBounds(364, 310, 113, 23);
 		connectButton.setBackground(PURPLE);
 		connectButton.setForeground(Color.WHITE);
-		contentPane.add(connectButton); 
+		add(connectButton); 
 	}
 
 	private void setUpServerLabel() {
@@ -105,9 +101,8 @@ public class ClientView extends JFrame{
 		lbSever.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbSever.setBounds(10, 315, 50, 14);
 		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		getContentPane().add(lbSever);
 		lbSever.setForeground(PURPLE);
-		contentPane.add(lbSever);
+		add(lbSever);
 	}
 	
 	private void setUpServerTF() {
@@ -116,7 +111,7 @@ public class ClientView extends JFrame{
 		tfSever.setColumns(10);
 		tfSever.setBorder(BorderFactory.createLineBorder(PURPLE,1));
 		tfSever.setText("localhost");
-		contentPane.add(tfSever);
+		add(tfSever);
 	}
 		
 	private void setUpIDLabel() {
@@ -124,20 +119,19 @@ public class ClientView extends JFrame{
 		lblID.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblID.setBounds(202, 313, 46, 14);
 		lblID.setForeground(PURPLE);
-		contentPane.add(lblID);
+		add(lblID);
 	}
 	
 	private void setUpIDTF() {
 		tfID = new JTextField();
 		tfID.setBounds(231, 311, 123, 20);
 		tfID.setBorder(BorderFactory.createLineBorder(PURPLE,1));
-		getContentPane().add(tfID);
 		tfID.setColumns(10);
-		contentPane.add(tfID);
+		add(tfID);
 	}
 	
 	private void setUpError() {
 		errors = new JLabel();
-		contentPane.add(errors);
+		add(errors);
 	}
 }
