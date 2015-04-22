@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ServerChat {
 	ArrayList<ServiceChat> services;
 	ServerSocket server;
-	ServerView view;
+	ServerControl control;
 	final int PORT = 6969;
 	
 	public static void main(String[] args) {
@@ -15,8 +15,7 @@ public class ServerChat {
 	
 	public ServerChat() {
 		services = new ArrayList<ServiceChat> ();
-		view = new ServerView();
-		view.setVisible(true);
+		control = new ServerControl();
 		try {
 			server = new ServerSocket(PORT);
 			System.out.println("Server initiated");
@@ -56,6 +55,7 @@ public class ServerChat {
 	}
 	
 	public void printAll(String input, String name) {
+		System.out.print(name + ": " + input);
 		for (ServiceChat service: services) {
 			service.print(input, name);
 		}
