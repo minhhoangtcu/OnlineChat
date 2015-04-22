@@ -18,8 +18,6 @@ public class Client {
 	
 	public Client() {
 		control = new ClientControl(this);
-		control.view.buildView();
-		control.view.setVisible(true);
 	}
 	
 	public void connect() {

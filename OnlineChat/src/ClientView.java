@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+import javax.swing.border.LineBorder;
 
 public class ClientView extends JPanel{
 	JTextArea result;
@@ -63,10 +64,13 @@ public class ClientView extends JPanel{
 
 	private void setUpResult() {
 		result = new JTextArea();
+		result.setWrapStyleWord(true);
+		result.setLineWrap(true);
+		result.setEditable(false);
 		scroller = new JScrollPane();
-		result.setBorder(BorderFactory.createLineBorder(PURPLE,1));
+		result.setBorder(new LineBorder(new Color(122, 0, 163), 1));
 		scroller.setViewportView(result);
-		scroller.setBounds(10, 11, 344, 258);
+		scroller.setBounds(10, 11, 467, 258);
 		add(scroller);
 	}
 		
