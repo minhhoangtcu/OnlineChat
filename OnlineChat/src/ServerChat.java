@@ -18,7 +18,7 @@ public class ServerChat {
 	
 	public ServerChat() {
 		services = new ArrayList<ServiceChat> ();
-		control = new ServerControl();
+		control = new ServerControl(this);
 		currentClient = 0;
 		control.appendText("Server started. Type \"" + SpecialCommands.help + "\" to show more commands. \n");
 		try {
@@ -74,6 +74,8 @@ public class ServerChat {
 			service.print(input, name);
 		}
 	}
+	
+	public boolea
 	
 	private void addToLog(String text) {
 		String timeStamp = new Date().toString();
