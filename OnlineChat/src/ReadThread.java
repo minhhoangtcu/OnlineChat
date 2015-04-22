@@ -20,7 +20,7 @@ class ReadThread extends Thread {
 		String s;
 		try {
 			while ((s = in.nextLine()) != null) {
-				if (s.equals(SpecialCommands.getName)) client.sendName();
+				if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.getName)) client.sendName();
 				else display.append(s + '\n');
 			}
 		} catch (NoSuchElementException e) {}

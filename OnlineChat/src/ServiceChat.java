@@ -41,7 +41,7 @@ public class ServiceChat implements Runnable {
 	}
 	
 	public String getName() {
-		out.println(SpecialCommands.getName);
+		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName);
 		out.flush();
 		String name = in.nextLine();
 		return name;

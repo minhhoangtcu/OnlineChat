@@ -57,8 +57,8 @@ public class ServerControl implements ActionListener{
 	
 	private void doHelp() {
 		String text = "\n"
-					+ "KICK clientNumber \t to kick a client out of the system. For example: KICK 0 \n"
-					+ "LOG \t\t show the chat log from the begining of the server \n";
+					+ SpecialCommands.kick.toUpperCase() + "\t to kick a client out of the system. \n"
+					+ SpecialCommands.log.toUpperCase() + "\t show the chat log from the begining of the server \n";
 		appendText(text);
 	}
 	
