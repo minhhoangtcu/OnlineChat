@@ -38,20 +38,20 @@ public class ServerControl implements ActionListener{
 			else if (firstLetter.equals(SpecialCommands.log)) doLog();
 		}
 		else if (inputs.length == 2) {
-			if (firstLetter.equals(SpecialCommands.kick)); doKick(getClientID(inputs[1]));
+			try {
+				int clientID = getClientID(inputs[1]);
+				if (firstLetter.equals(SpecialCommands.kick) && server.containClientID(clientID)); doKick(clientID);
+			} catch (NumberFormatException e) {
+				appendText("Invalid input, the second argument must be a number");
+			}
+		}
+		else {
+			appendText("Ivalid input, type \"" + SpecialCommands.help +"\" for list of commands.");
 		}
 	}
 	
-	private int getClientID(String text) {
-		int number = -1;
-		try {
-			number = Integer.parseInt(text);
-			
-			}
-		}
-		catch (NumberFormatException e) {
-			appendText("Invalid input, the second argument must be a number");
-		}
+	private int getClientID(String text) throws NumberFormatException{
+		int number = Integer.parseInt(text);
 		return number;
 	}
 	

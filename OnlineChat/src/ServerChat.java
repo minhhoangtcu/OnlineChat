@@ -75,7 +75,14 @@ public class ServerChat {
 		}
 	}
 	
-	public boolea
+	public boolean containClientID(int clientID) {
+		for (ServiceChat service: services) {
+			if (clientID == service.getID()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	private void addToLog(String text) {
 		String timeStamp = new Date().toString();

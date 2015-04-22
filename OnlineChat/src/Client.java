@@ -72,6 +72,7 @@ public class Client {
 		control.view.sendButton.setContentAreaFilled(true);
 		control.view.setTitle(name);
 		control.view.connectButton.setText("Disconnect");
+		control.view.result.append("CONNECTED \n");
 		control.setConnected(true);
 		control.view.userInput.setText("");
 		control.view.tfID.setEnabled(false);
@@ -82,7 +83,7 @@ public class Client {
 		control.view.sendButton.setContentAreaFilled(false);
 		control.view.connectButton.setText("Connect");
 		control.setConnected(false);
-		control.view.result.setText("");
+		control.view.result.append("DISCONECTED FROM THE SERVER \n");
 		control.view.userInput.setText("");
 		control.view.tfID.setEnabled(true);
 	}
