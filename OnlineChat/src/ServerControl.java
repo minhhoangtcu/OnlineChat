@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 public class ServerControl implements ActionListener{
 	
-	ServerView view;
+	private ServerView view;
 	
 	public static void main(String[] args) {
 		ServerControl control = new ServerControl();
@@ -23,7 +23,9 @@ public class ServerControl implements ActionListener{
 		}
 	}
 
-	
+	public void appendText(String text) {
+		view.output.append(text);
+	}
 	
 	
 

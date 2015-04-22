@@ -7,6 +7,7 @@ public class ServerChat {
 	ServerSocket server;
 	ServerControl control;
 	final int PORT = 6969;
+	private int currentClient;
 	
 	public static void main(String[] args) {
 		ServerChat server = new ServerChat();
@@ -16,6 +17,7 @@ public class ServerChat {
 	public ServerChat() {
 		services = new ArrayList<ServiceChat> ();
 		control = new ServerControl();
+		currentClient = 0;
 		try {
 			server = new ServerSocket(PORT);
 			System.out.println("Server initiated");
@@ -42,8 +44,8 @@ public class ServerChat {
 	public void startClients() throws IOException{
 		 while (true) {
 			 Socket client = server.accept();
-			 System.out.println("Client " + services.size() +" connected");
-			 ServiceChat service = new ServiceChat(client, this);
+			 ServiceChat service = new ServiceChat(client, this, currentClient);
+			 currentClient++;
 			 addClientIntoServicesAndStartIt(service);
 		 }
 	}
@@ -52,10 +54,11 @@ public class ServerChat {
 		services.add(service);
 		Thread t = new Thread(service);
 		t.start();
+		control.appendText("Client " + service.getID() + " connected" + "\n");
 	}
 	
 	public void printAll(String input, String name) {
-		System.out.print(name + ": " + input);
+		control.appendText(name + ": " + input + "\n");
 		for (ServiceChat service: services) {
 			service.print(input, name);
 		}

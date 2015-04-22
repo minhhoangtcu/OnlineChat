@@ -9,10 +9,12 @@ public class ServiceChat implements Runnable {
 	private ServerChat server;
 	private Scanner in;
 	private PrintWriter out;
+	private int clientID;
 	
-	public ServiceChat(Socket client, ServerChat server) {
+	public ServiceChat(Socket client, ServerChat server, int clientID) {
 		this.client = client;
 		this.server = server;
+		this.clientID = clientID;
 	}
 
 	public void run() {
@@ -21,12 +23,16 @@ public class ServiceChat implements Runnable {
 			out = new PrintWriter(client.getOutputStream());
 			doService();
 			client.close();
-			int index = server.services.indexOf(this);
-			server.services.remove(index);
+			removeFromServices();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void removeFromServices() {
+		int index = server.services.indexOf(this);
+		server.services.remove(index);
 	}
 	
 	public void print(String input, String name) {
@@ -39,6 +45,10 @@ public class ServiceChat implements Runnable {
 		out.flush();
 		String name = in.nextLine();
 		return name;
+	}
+	
+	public int getID() {
+		return clientID;
 	}
 
 	private void doService() {
