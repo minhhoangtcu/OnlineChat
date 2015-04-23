@@ -67,7 +67,7 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		
 		if (event.equals(client.control.view.connectButton) 
 				|| event == client.control.view.tfID
-				&& client.control.isConnect()) {
+				&& !client.control.isConnect()) {
 			setTitleForTab(index, client.control.view.tfID.getText());
 		}
 	}
