@@ -83,7 +83,7 @@ public class ClientChatControl implements MouseListener, ActionListener {
 	private void removeTab(Client client, int index) {
 		view.tabbedPane.remove(client.control.view);
 		clientChat.removeClient(index);
-		if (view.tabbedPane.getTabCount() == 0) {
+		if (view.tabbedPane.getTabCount() == 1) {
 			createReadyTab();
 			setTitleForTab(0, "New Tab");
 		}

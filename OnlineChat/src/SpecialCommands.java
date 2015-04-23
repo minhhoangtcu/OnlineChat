@@ -7,6 +7,7 @@ public class SpecialCommands {
 	public static String help = "help";
 	public static String log = "log";
 	public static String kick = "kick";
+	public static String users = "users";
 	public final static String KEYWORD = "MINHHOANGQUANGNGUYEN"; // a secret password for the server and the client to talk with each other
 	private static String logStore = "";
 	

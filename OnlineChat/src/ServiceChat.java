@@ -40,6 +40,11 @@ public class ServiceChat implements Runnable {
 		out.flush();
 	}
 	
+	public void print(String input) {
+		out.println(input);
+		out.flush();
+	}
+	
 	public String getName() {
 		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName);
 		out.flush();
@@ -51,6 +56,7 @@ public class ServiceChat implements Runnable {
 		return clientID;
 	}
 
+	// TODO: MAKE THIS A THREAD
 	private void doService() {
 		while (true) {
 			String input;
@@ -59,7 +65,7 @@ public class ServiceChat implements Runnable {
 			} catch (NoSuchElementException e) {
 				break;
 			}
-			server.printAll(input, getName());
+			server.printAll(input, this);
 		}
 	}
 }
