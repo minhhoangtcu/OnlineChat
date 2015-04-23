@@ -2,7 +2,7 @@
 public class ClientChat {
 	
 	
-	private final int MAX = 7;
+	private final int MAX = 14;
 	private Client[] clients = new Client [MAX];
 	private int numberOfClients = 0;
 	
@@ -37,6 +37,7 @@ public class ClientChat {
 			clients[i] = clients[i + 1];
 		}
 		numberOfClients--;
+		
 	}
 	
 	public int returnNumberOfClients () {
