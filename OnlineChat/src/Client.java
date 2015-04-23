@@ -75,8 +75,12 @@ public class Client {
 		changeViewAfterSend();
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public void sendName() {
-		out.println(thread.getName());
+		out.println(name);
 		out.flush();
 	}
 	

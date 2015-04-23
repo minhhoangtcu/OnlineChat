@@ -68,6 +68,6 @@ public class ServerControl implements ActionListener{
 	}
 	
 	private void doKick(int clientID) {
-		
+		server.kick(clientID);
 	}
 }

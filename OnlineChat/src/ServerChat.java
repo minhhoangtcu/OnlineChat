@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.net.*;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -75,6 +74,8 @@ public class ServerChat {
 		}
 	}
 	
+	
+	
 	public boolean containClientID(int clientID) {
 		for (ServiceChat service: services) {
 			if (clientID == service.getID()) {
@@ -82,6 +83,21 @@ public class ServerChat {
 			}
 		}
 		return false;
+	}
+	
+	private ServiceChat getServiceWithThisID(int clientID) {
+		for (ServiceChat service: services) {
+			if (clientID == service.getID()) {
+				return service;
+			}
+		}
+		return null;
+	}
+	
+	public void kick(int clientID) {
+		ServiceChat service = getServiceWithThisID(clientID);
+		service.print(SpecialCommands.KEYWORD + SpecialCommands.kick + " " + service.getName());
+		service.removeFromServices();
 	}
 	
 	private void addToLog(String text) {
