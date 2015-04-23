@@ -1,3 +1,4 @@
+package Client.chat;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,13 +20,12 @@ public class ClientView extends JPanel{
 	private JLabel lbSever;
 	private JLabel lblID;
 	private JScrollPane scroller;
-	private JPanel contentPane;
 	final Color PURPLE = new Color (122, 0, 163),
 			LIGHTPURPLE = new Color (181, 113, 204);
 	
 	
 	public static void main(String[] args) {
-		ClientView view = new ClientView();
+		new ClientView();
 	}
 	
 	public ClientView() {

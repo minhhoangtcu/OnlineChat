@@ -1,3 +1,6 @@
+package Client;
+import Client.chat.Client;
+import Client.chat.ClientChatControl;
 
 public class ClientChat {
 	
@@ -7,7 +10,7 @@ public class ClientChat {
 	private int numberOfClients = 0;
 	
 	public static void main (String[] args) {
-		ClientChat display = new ClientChat();
+		new ClientChat();
 	}
 	
 	public ClientChat () {

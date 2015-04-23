@@ -1,6 +1,10 @@
+package Client.chat;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import javax.swing.JTextArea;
+
+import data.SpecialCommands;
 
 /*
  * This is a thread that always read data from the input of a client

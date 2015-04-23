@@ -1,8 +1,7 @@
+package Client.chat;
 import java.io.*;
 import java.util.*;
 import java.net.*;
-
-import javax.swing.JPanel;
 
 public class Client {
 	private final static int PORT = 6969;

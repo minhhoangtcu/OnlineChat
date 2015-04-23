@@ -1,5 +1,9 @@
+package Server.chat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import data.SpecialCommands;
+import Server.ServerChat;
 
 public class ServerControl implements ActionListener{
 	

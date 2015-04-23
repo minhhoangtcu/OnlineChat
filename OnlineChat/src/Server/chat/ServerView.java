@@ -1,10 +1,9 @@
+package Server.chat;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-
 
 public class ServerView extends JFrame {
 	JTextField input;

@@ -1,10 +1,15 @@
+package Server;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+import data.SpecialCommands;
+import Server.chat.ServerControl;
+import Server.chat.ServiceChat;
+
 public class ServerChat {
-	ArrayList<ServiceChat> services;
+	public ArrayList<ServiceChat> services;
 	ServerSocket server;
 	ServerControl control;
 	final int PORT = 6969;

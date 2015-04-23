@@ -1,3 +1,4 @@
+package data;
 /*
  * This class stores a lot of keywords and data.
  */
