@@ -85,6 +85,10 @@ public class ClientControl implements MouseListener, ActionListener{
 		isConnect = state;
 	}
 	
+	public boolean isConnect() {
+		return isConnect;
+	}
+	
 	private void changeConnectButtonWhenEntered() {
 		view.connectButton.setBackground(view.LIGHTPURPLE);
 	}

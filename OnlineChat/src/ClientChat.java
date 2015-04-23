@@ -22,8 +22,8 @@ public class ClientChat {
 		return clients;
 	}
 	
-	public Client returnLastClient() {
-		return clients[numberOfClients - 1];
+	public Client returnClient (int index) {
+		return clients[index];
 	}
 	
 	public void addClient() {
