@@ -1,16 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.*;
-import java.awt.EventQueue;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicTabbedPaneUI.TabbedPaneLayout;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 

@@ -13,7 +13,7 @@ public class Client {
 	private String host;
 	
 	public static void main(String[] args) {
-		Client display = new Client();
+		new Client();
 	}
 	
 	public Client() {
