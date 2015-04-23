@@ -1,7 +1,10 @@
 
 public class ClientChat {
 	
-	private Client[] clients = new Client [7];
+	
+	private final int MAX = 7;
+	private Client[] clients = new Client [MAX];
+	private int numberOfClients = 0;
 	
 	public static void main (String[] args) {
 		ClientChat display = new ClientChat();
@@ -9,10 +12,32 @@ public class ClientChat {
 	
 	public ClientChat () {
 		ClientChatControl control = new ClientChatControl(this);
-		clients[0] = new Client();
+		addClient();
 		control.addTab("New Tab", clients[0]);
-		clients[1] = new Client();
+		addClient();
 		control.addTab("", clients[1]);
 	}
-
+	
+	public Client[] returnClients() {
+		return clients;
+	}
+	
+	public Client returnLastClient() {
+		return clients[numberOfClients - 1];
+	}
+	
+	public void addClient() {
+		Client client = new Client();
+		clients[numberOfClients] = client;
+		numberOfClients++;
+	}
+	
+	public void removeClient() {
+		clients[numberOfClients] = null;
+		numberOfClients--;
+	}
+	
+	public int returnNumberOfClients () {
+		return numberOfClients;
+	}
 }

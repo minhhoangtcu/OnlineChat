@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ClientChatView extends JFrame {
 
 	private JPanel contentPane;
-	private JTabbedPane tabbedPane;
+	JTabbedPane tabbedPane;
 
 	/**
 	 * Launch the application.
@@ -38,9 +38,5 @@ public class ClientChatView extends JFrame {
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.RIGHT);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
-		}
-	
-	public JTabbedPane getJTabbedPane() {
-		return tabbedPane;
 	}
 }
