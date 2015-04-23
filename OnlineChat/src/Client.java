@@ -9,6 +9,8 @@ public class Client {
 	private PrintWriter out;
 	private Thread thread;
 	private ClientControl control;
+	private String name;
+	private String host;
 	
 	public static void main(String[] args) {
 		Client display = new Client();
@@ -19,12 +21,25 @@ public class Client {
 	}
 	
 	public void connect() {
-		String host = control.view.tfSever.getText();
-		String name = control.view.tfID.getText();
-		
-		if (host.equals("") || name.equals("")) {
-			return;
+		setNameAndHost();
+		if (!isEmpty(name, host)) {
+			connectAndStartReadingThread();
+			changeViewAfterConnect(name);
 		}
+	}
+	
+	private void setNameAndHost() {
+		host = control.view.tfSever.getText();
+		name = control.view.tfID.getText();
+	}
+	
+	private boolean isEmpty(String name, String host) {
+		if (host.equals("") || name.equals(""))
+			return true;
+		else return false;
+	}
+	
+	private void connectAndStartReadingThread() {
 		try{
 			socket = new Socket(host, PORT);
 			in = new Scanner(socket.getInputStream());
@@ -37,8 +52,6 @@ public class Client {
 		thread = new ReadThread(in, control.view.result, this);
 		thread.setName(name);
 		thread.start();
-		
-		changeViewAfterConnect(name);
 	}
 	
 	public void disconnect() {
@@ -51,7 +64,7 @@ public class Client {
 			control.view.errors.setText(ioe.getMessage());
 		}
 		in.close();
-		out.print(false);
+		//out.print(false);
 		out.close();
 		changeViewAfterDisconnect();
 	}

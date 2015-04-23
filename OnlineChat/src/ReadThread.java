@@ -6,9 +6,9 @@ import javax.swing.JTextArea;
  * This is a thread that always read data from the input of a client
  */
 class ReadThread extends Thread {
-	Scanner in;
-	JTextArea display;
-	Client client;
+	private Scanner in;
+	private JTextArea display;
+	private Client client;
 	
 	public ReadThread(Scanner in, JTextArea display, Client client) {
 		this.in = in;
@@ -21,6 +21,7 @@ class ReadThread extends Thread {
 		try {
 			while ((s = in.nextLine()) != null) {
 				if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.getName)) client.sendName();
+				else if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.kick)) client.disconnect();
 				else display.append(s + '\n');
 			}
 		} catch (NoSuchElementException e) {}

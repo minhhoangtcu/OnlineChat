@@ -59,7 +59,7 @@ public class ServiceChat implements Runnable {
 			} catch (NoSuchElementException e) {
 				break;
 			}
-			server.printAll(input, getName());
+			server.printAll(input, this);
 		}
 	}
 }

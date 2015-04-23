@@ -63,15 +63,15 @@ public class ServerChat {
 	/*
 	 * Call each of the service and tell them to print
 	 */
-	public void printAll(String input, String name) {
+	public void printAll(String input, ServiceChat sendingService) {
 		//Show on server
-		String text = name + ": " + input;
+		String text = sendingService.getName() + "(ID: " + sendingService.getID() + ")" + ": " + input;
 		control.appendText(text);
 		addToLog(text);
 		
 		//Call each service to print
 		for (ServiceChat service: services) {
-			service.print(input, name);
+			service.print(input, sendingService.getName());
 		}
 	}
 	
