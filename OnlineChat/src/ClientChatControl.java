@@ -65,10 +65,12 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		int index = view.tabbedPane.getSelectedIndex();
 		Client client = clientChat.returnClient(index);
 		
-		if (event.equals(client.control.view.connectButton) 
-				|| event == client.control.view.tfID
-				&& !client.control.isConnect()) {
+		if (event.equals(client.control.view.connectButton) || event == client.control.view.tfID && !client.control.isConnect()) {
 			setTitleForTab(index, client.control.view.tfID.getText());
+		} else if (event.equals(client.control.view.connectButton) && client.control.isConnect()) {
+			System.out.println("test");
+			view.tabbedPane.remove(index);
+			clientChat.removeClient(index);
 		}
 	}
 	

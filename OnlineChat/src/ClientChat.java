@@ -32,8 +32,10 @@ public class ClientChat {
 		numberOfClients++;
 	}
 	
-	public void removeClient() {
-		clients[numberOfClients] = null;
+	public void removeClient(int index) {
+		for (int i = index; i < numberOfClients - 1; i++) {
+			clients[i] = clients[i + 1];
+		}
 		numberOfClients--;
 	}
 	
