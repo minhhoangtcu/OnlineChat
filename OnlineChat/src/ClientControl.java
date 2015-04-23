@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JPanel;
 
 import javax.swing.BorderFactory;
 
@@ -20,7 +21,7 @@ public class ClientControl implements MouseListener, ActionListener{
 		setUpListeners();
 	}
 	
-	public void setUpListeners() {
+	private void setUpListeners() {
 		view.connectButton.addMouseListener(this);
 		view.sendButton.addMouseListener(this);
 		view.result.addMouseListener(this);
@@ -32,14 +33,12 @@ public class ClientControl implements MouseListener, ActionListener{
 		view.userInput.addActionListener(this);
 		view.tfID.addActionListener(this);
 	}
-	
 
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	
 	public void mouseEntered(MouseEvent e) {
 		Object event = e.getSource();
 		if (event.equals(view.connectButton)) changeConnectButtonWhenEntered();
@@ -50,7 +49,6 @@ public class ClientControl implements MouseListener, ActionListener{
 		else if (event.equals(view.tfID)) changeIDTFWhenEntered();
 	}
 
-	
 	public void mouseExited(MouseEvent e) {
 		Object event = e.getSource();
 		if (event.equals(view.connectButton)) changeConnectButtonWhenExited();
@@ -61,13 +59,11 @@ public class ClientControl implements MouseListener, ActionListener{
 		else if (event.equals(view.tfID)) changeIDTFWhenExited();
 	}
 
-	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
@@ -87,6 +83,10 @@ public class ClientControl implements MouseListener, ActionListener{
 	
 	public void setConnected(boolean state) {
 		isConnect = state;
+	}
+	
+	public boolean isConnect() {
+		return isConnect;
 	}
 	
 	private void changeConnectButtonWhenEntered() {
