@@ -89,7 +89,6 @@ public class Client {
 	private void changeViewAfterConnect(String name) {
 		control.view.sendButton.setEnabled(true);
 		control.view.sendButton.setContentAreaFilled(true);
-		//control.view.setTitle(name);
 		control.view.connectButton.setText("Disconnect");
 		control.view.result.append("CONNECTED \n");
 		control.setConnected(true);
