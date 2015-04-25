@@ -79,8 +79,9 @@ public class ServerChat {
 		}
 	}
 	
-	
-	
+	/*
+	 * Check if the list of services to see if its client has the client ID or not 
+	 */
 	public boolean containClientID(int clientID) {
 		for (ServiceChat service: services) {
 			if (clientID == service.getID()) {
