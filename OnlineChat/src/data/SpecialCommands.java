@@ -13,7 +13,7 @@ public class SpecialCommands {
 	private static String logStore = "";
 	
 	public static void appendLog(String text) {
-		logStore = logStore + "\n" + text;
+		logStore = logStore + text + "\n";
 	}
 	
 	public static String getLog() {

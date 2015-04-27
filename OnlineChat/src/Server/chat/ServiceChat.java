@@ -37,7 +37,10 @@ public class ServiceChat implements Runnable {
 	}
 	
 	public void print(String input, String name) {
-		out.println(name + ": " + input);
+		String output = "";
+		if (clientName.equals(name)) output += "> ";
+		output += name + ": " + input;
+		out.println(output);
 		out.flush();
 	}
 	
