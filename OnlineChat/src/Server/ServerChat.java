@@ -1,10 +1,15 @@
+package Server;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+import data.SpecialCommands;
+import Server.chat.ServerControl;
+import Server.chat.ServiceChat;
+
 public class ServerChat {
-	ArrayList<ServiceChat> services;
+	public ArrayList<ServiceChat> services;
 	ServerSocket server;
 	ServerControl control;
 	final int PORT = 6969;
@@ -74,8 +79,18 @@ public class ServerChat {
 		}
 	}
 	
+	public void printAll(String input) {
+		control.appendText(input);
+		addToLog("Console: " + input);
+		
+		for (ServiceChat service: services) {
+			service.print(input);
+		}
+	}
 	
-	
+	/*
+	 * Check if the list of services to see if its client has the client ID or not 
+	 */
 	public boolean containClientID(int clientID) {
 		for (ServiceChat service: services) {
 			if (clientID == service.getID()) {
@@ -85,7 +100,7 @@ public class ServerChat {
 		return false;
 	}
 	
-	private ServiceChat getServiceWithThisID(int clientID) {
+	public ServiceChat getServiceWithThisID(int clientID) {
 		for (ServiceChat service: services) {
 			if (clientID == service.getID()) {
 				return service;
@@ -94,10 +109,18 @@ public class ServerChat {
 		return null;
 	}
 	
-	public void kick(int clientID) {
-		ServiceChat service = getServiceWithThisID(clientID);
-		service.print(SpecialCommands.KEYWORD + SpecialCommands.kick + " " + service.getName());
-		service.removeFromServices();
+	public String getNameOfThisServiceWithThisID(int clientID) {
+		for (ServiceChat service: services) {
+			if (clientID == service.getID()) {
+				return service.getName();
+			}
+		}
+		return null;
+	}
+	
+	public void removeFromServices(ServiceChat service) {
+		int index = services.indexOf(service);
+		services.remove(index);
 	}
 	
 	private void addToLog(String text) {

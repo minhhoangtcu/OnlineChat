@@ -1,10 +1,9 @@
+package Server.chat;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-
 
 public class ServerView extends JFrame {
 	JTextField input;
@@ -22,6 +21,7 @@ public class ServerView extends JFrame {
 	}
 	
 	public void setUpContentPane() {
+		setTitle("SERVER");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);

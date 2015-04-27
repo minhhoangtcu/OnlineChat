@@ -1,16 +1,10 @@
-import java.awt.BorderLayout;
+package Client.chat;
 import java.awt.Color;
-import java.awt.event.*;
-import java.awt.EventQueue;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicTabbedPaneUI.TabbedPaneLayout;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 import javax.swing.border.LineBorder;
@@ -26,13 +20,12 @@ public class ClientView extends JPanel{
 	private JLabel lbSever;
 	private JLabel lblID;
 	private JScrollPane scroller;
-	private JPanel contentPane;
 	final Color PURPLE = new Color (122, 0, 163),
 			LIGHTPURPLE = new Color (181, 113, 204);
 	
 	
 	public static void main(String[] args) {
-		ClientView view = new ClientView();
+		new ClientView();
 	}
 	
 	public ClientView() {

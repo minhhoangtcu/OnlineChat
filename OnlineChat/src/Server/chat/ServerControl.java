@@ -1,5 +1,9 @@
+package Server.chat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import data.SpecialCommands;
+import Server.ServerChat;
+import Server.commands.*;
 
 public class ServerControl implements ActionListener{
 	
@@ -18,7 +22,7 @@ public class ServerControl implements ActionListener{
 		Object event = e.getSource();
 		if (event.equals(view.input)) {
 			String text = view.input.getText();
-			appendText(text);
+			appendText("> " + text);
 			checkIfInputIsSpecialThenProceed(text);
 			view.input.setText("");
 		}
@@ -33,18 +37,10 @@ public class ServerControl implements ActionListener{
 		String firstLetter = inputs[0];
 		firstLetter = firstLetter.toLowerCase();
 		
-		if (inputs.length == 1) {
-			if (firstLetter.equals(SpecialCommands.help)) doHelp(); 
-			else if (firstLetter.equals(SpecialCommands.log)) doLog();
-		}
-		else if (inputs.length == 2) {
-			try {
-				int clientID = getClientID(inputs[1]);
-				if (firstLetter.equals(SpecialCommands.kick) && server.containClientID(clientID)); doKick(clientID);
-			} catch (NumberFormatException e) {
-				appendText("Invalid input, the second argument must be a number");
-			}
-		}
+		if (firstLetter.equals(SpecialCommands.help) && (inputs.length == 1)) doHelp(); 
+		else if (firstLetter.equals(SpecialCommands.log)  && (inputs.length == 1)) doLog();
+		else if (firstLetter.equals(SpecialCommands.users)  && (inputs.length == 1)) doUsers();
+		else if (firstLetter.equals(SpecialCommands.kick) && (inputs.length == 2)) doKick(inputs);
 		else {
 			appendText("Ivalid input, type \"" + SpecialCommands.help +"\" for list of commands.");
 		}
@@ -56,18 +52,28 @@ public class ServerControl implements ActionListener{
 	}
 	
 	private void doHelp() {
-		String text = "\n"
-					+ SpecialCommands.kick.toUpperCase() + "\t kick a client out of the system. \n"
-					+ SpecialCommands.log.toUpperCase() + "\t show the chat log from the begining of the server \n"
-					+ SpecialCommands.users.toUpperCase() + "\t show all clients connected to this server";
-		appendText(text);
+		new HelpCommand().executeCommand(this);
 	}
 	
 	private void doLog() {
-		appendText(SpecialCommands.getLog());
+		new LogCommand().executeCommand(this);
 	}
 	
-	private void doKick(int clientID) {
-		server.kick(clientID);
+	private void doKick(String[] inputs) {
+		String firstLetter = inputs[0];
+		firstLetter = firstLetter.toLowerCase();
+		try {
+			int clientID = getClientID(inputs[1]);
+			if (server.containClientID(clientID)) {
+				new KickCommand().executeCommand(this, server, clientID);
+			}
+		} catch (NumberFormatException e) {
+			appendText("Invalid input, the second argument must be a client ID");
+		}
+		
+	}
+	
+	private void doUsers() {
+		new UsersCommand().executeCommand(this, server);
 	}
 }

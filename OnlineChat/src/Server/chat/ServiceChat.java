@@ -1,8 +1,12 @@
+package Server.chat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import data.SpecialCommands;
+import Server.ServerChat;
 
 public class ServiceChat implements Runnable {
 	private Socket client;
@@ -10,6 +14,7 @@ public class ServiceChat implements Runnable {
 	private Scanner in;
 	private PrintWriter out;
 	private int clientID;
+	private String clientName;
 	
 	public ServiceChat(Socket client, ServerChat server, int clientID) {
 		this.client = client;
@@ -21,18 +26,14 @@ public class ServiceChat implements Runnable {
 		try {
 			in  = new Scanner(client.getInputStream());
 			out = new PrintWriter(client.getOutputStream());
+			requestName();
 			doService();
 			client.close();
-			removeFromServices();
+			server.removeFromServices(this);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void removeFromServices() {
-		int index = server.services.indexOf(this);
-		server.services.remove(index);
 	}
 	
 	public void print(String input, String name) {
@@ -46,27 +47,37 @@ public class ServiceChat implements Runnable {
 	}
 	
 	public String getName() {
-		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName);
-		out.flush();
-		String name = in.nextLine();
-		return name;
+		return clientName;
 	}
 	
 	public int getID() {
 		return clientID;
 	}
 
-	// TODO: MAKE THIS A THREAD
+	private void requestName() {
+		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName);
+		out.flush();
+	}
+	
 	private void doService() {
-		while (true) {
-			String input;
-			try{
-				input = in.nextLine();
-			} catch (NoSuchElementException e) {
-				break;
+		String input;
+		try {
+			while ((input = in.nextLine()) != null) {
+				executeInput(input);
 			}
-			server.printAll(input, this);
+		} catch (NoSuchElementException | IllegalStateException e) {
+			// TODO write something to handle the error. 
 		}
+	}
+
+	private void executeInput(String input) {
+		String[] inputs = input.split(" ");
+		String firstLetter = inputs[0];
+		
+		if (inputs.length == 2 && firstLetter.equals(SpecialCommands.KEYWORD + SpecialCommands.getName)) {
+			clientName = inputs[1];
+		}
+		else server.printAll(input, this);
 	}
 }
 

@@ -1,9 +1,10 @@
+package Client.chat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JTabbedPane;
+import Client.ClientChat;
 
 public class ClientChatControl implements MouseListener, ActionListener {
 	ClientChatView view;
@@ -64,13 +65,10 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		Object event = e.getSource();
 		int index = view.tabbedPane.getSelectedIndex();
 		Client client = clientChat.returnClient(index);
-		
-		if (event.equals(client.control.view.connectButton) || event == client.control.view.tfID && !client.control.isConnect()) {
+		if (event.equals(client.control.view.connectButton) && !client.control.view.sendButton.isEnabled() || event == client.control.view.tfID) {
 			setTitleForTab(index, client.control.view.tfID.getText());
-		} else if (event.equals(client.control.view.connectButton) && client.control.isConnect()) {
-			System.out.println("test");
-			view.tabbedPane.remove(index);
-			clientChat.removeClient(index);
+		} else if (event.equals(client.control.view.connectButton) && client.control.view.sendButton.isEnabled()) {
+			removeTab(client, index);
 		}
 	}
 	
@@ -81,5 +79,14 @@ public class ClientChatControl implements MouseListener, ActionListener {
 	private void createReadyTab () {
 		clientChat.addClient();
 		addTab("", clientChat.returnClient(clientChat.returnNumberOfClients() - 1));
+	}
+	
+	private void removeTab(Client client, int index) {
+		view.tabbedPane.remove(client.control.view);
+		clientChat.removeClient(index);
+		if (view.tabbedPane.getTabCount() == 1) {
+			createReadyTab();
+			setTitleForTab(0, "New Tab");
+		}
 	}
 }
