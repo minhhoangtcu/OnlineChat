@@ -1,9 +1,9 @@
 package Server.chat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import data.SpecialCommands;
 import Server.ServerChat;
+import Server.commands.*;
 
 public class ServerControl implements ActionListener{
 	
@@ -60,15 +60,11 @@ public class ServerControl implements ActionListener{
 	}
 	
 	private void doHelp() {
-		String text = "\n"
-					+ SpecialCommands.kick.toUpperCase() + "\t kick a client out of the system. \n"
-					+ SpecialCommands.log.toUpperCase() + "\t show the chat log from the begining of the server \n"
-					+ SpecialCommands.users.toUpperCase() + "\t show all clients connected to this server";
-		appendText(text);
+		new HelpCommand().executeCommand(this);
 	}
 	
 	private void doLog() {
-		appendText(SpecialCommands.getLog());
+		new LogCommand().executeCommand(this);
 	}
 	
 	private void doKick(int clientID) {
