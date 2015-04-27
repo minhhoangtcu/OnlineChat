@@ -9,27 +9,31 @@ import data.SpecialCommands;
 /*
  * This is a thread that always read data from the input of a client
  */
-class ReadThread extends Thread {
+class ClientReadThread extends Thread {
 	private Scanner in;
 	private JTextArea display;
 	private Client client;
 	
-	public ReadThread(Scanner in, JTextArea display, Client client) {
+	public ClientReadThread(Scanner in, JTextArea display, Client client) {
 		this.in = in;
 		this.display = display;
 		this.client = client;
 	}
 	
 	public void run() {
-		String s;
+		String input;
 		try {
-			while ((s = in.nextLine()) != null) {
-				if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.getName)) client.sendName();
-				else if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.kick)) client.disconnect();
-				else display.append(s + '\n');
+			while ((input = in.nextLine()) != null) {
+				executeInput(input);
 			}
 		} catch (NoSuchElementException | IllegalStateException e) {
 			// TODO write something to handle the error. 
 		}
+	}
+	
+	private void executeInput(String input) {
+		if (input.equals(SpecialCommands.KEYWORD + SpecialCommands.getName)) client.sendName();
+		else if (input.equals(SpecialCommands.KEYWORD + SpecialCommands.kick)) client.disconnect();
+		else display.append(input + '\n');
 	}
 }

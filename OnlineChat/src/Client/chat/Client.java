@@ -3,6 +3,8 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 
+import data.SpecialCommands;
+
 public class Client {
 	private final static int PORT = 6969;
 	private Socket socket;
@@ -23,9 +25,12 @@ public class Client {
 	
 	public void connect() {
 		setNameAndHost();
-		if (!isEmpty(name, host)) {
+		if (isLegit(name, host)) {
 			connectAndStartReadingThread();
 			changeViewAfterConnect(name);
+		}
+		else {
+			control.view.result.append("INVALID NAME. NAME MUST NOT HAVE SPACE. NAME MUST NOT EMPTY \n");
 		}
 	}
 	
@@ -34,10 +39,11 @@ public class Client {
 		name = control.view.tfID.getText();
 	}
 	
-	private boolean isEmpty(String name, String host) {
-		if (host.equals("") || name.equals(""))
-			return true;
-		else return false;
+	private boolean isLegit(String name, String host) {
+		String[] nameSeperated = name.split(" ");
+		if (host.equals("") || name.equals("") || (nameSeperated.length > 1))
+			return false;
+		else return true;
 	}
 	
 	private void connectAndStartReadingThread() {
@@ -50,8 +56,8 @@ public class Client {
 		} catch(IOException ioe) {
 			control.view.errors.setText(ioe.getMessage());
 		}
-		thread = new ReadThread(in, control.view.result, this);
-		thread.setName(name);
+		thread = new ClientReadThread(in, control.view.result, this);
+		thread.setName("Reading Thread for " + name);
 		thread.start();
 	}
 	
@@ -80,7 +86,7 @@ public class Client {
 	}
 	
 	public void sendName() {
-		out.println(name);
+		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName + " " +name);
 		out.flush();
 	}
 	
