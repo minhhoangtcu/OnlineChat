@@ -40,6 +40,7 @@ public class ServerControl implements ActionListener{
 		if (inputs.length == 1) {
 			if (firstLetter.equals(SpecialCommands.help)) doHelp(); 
 			else if (firstLetter.equals(SpecialCommands.log)) doLog();
+			else if (firstLetter.equals(SpecialCommands.users)) doUsers();
 		}
 		else if (inputs.length == 2) {
 			try {
@@ -68,6 +69,10 @@ public class ServerControl implements ActionListener{
 	}
 	
 	private void doKick(int clientID) {
-		server.kick(clientID);
+		new KickCommand().executeCommand(this, server, clientID);
+	}
+	
+	private void doUsers() {
+		new UsersCommand().executeCommand(this, server);
 	}
 }

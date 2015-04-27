@@ -25,9 +25,11 @@ class ReadThread extends Thread {
 		try {
 			while ((s = in.nextLine()) != null) {
 				if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.getName)) client.sendName();
-				else if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.kick + " " + client.getName())) client.disconnect();
+				else if (s.equals(SpecialCommands.KEYWORD + SpecialCommands.kick)) client.disconnect();
 				else display.append(s + '\n');
 			}
-		} catch (NoSuchElementException e) {}
+		} catch (NoSuchElementException | IllegalStateException e) {
+			// TODO write something to handle the error. 
+		}
 	}
 }

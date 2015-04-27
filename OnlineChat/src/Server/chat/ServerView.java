@@ -21,6 +21,7 @@ public class ServerView extends JFrame {
 	}
 	
 	public void setUpContentPane() {
+		setTitle("SERVER");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);

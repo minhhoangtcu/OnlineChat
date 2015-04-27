@@ -27,16 +27,11 @@ public class ServiceChat implements Runnable {
 			out = new PrintWriter(client.getOutputStream());
 			doService();
 			client.close();
-			removeFromServices();
+			server.removeFromServices(this);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void removeFromServices() {
-		int index = server.services.indexOf(this);
-		server.services.remove(index);
 	}
 	
 	public void print(String input, String name) {
@@ -60,7 +55,6 @@ public class ServiceChat implements Runnable {
 		return clientID;
 	}
 
-	// TODO: MAKE THIS A THREAD
 	private void doService() {
 		while (true) {
 			String input;
