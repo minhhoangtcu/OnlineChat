@@ -14,7 +14,7 @@ import Client.chat.ClientChatControl;
 
 public class ClientChat {
 	
-	private final int MAX = 14;
+	private final int MAX = 6;
 	private Client[] clients = new Client [MAX];
 	private int numberOfClients = 0;
 	
