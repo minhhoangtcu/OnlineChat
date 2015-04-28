@@ -1,9 +1,16 @@
+/*
+ * Program: Server
+ * Authors: Minh Hoang, Quang Nguyen, Kiet Nguyen, Le Bui
+ * 
+ * Program Overview:
+ * 		This is a server. It has an GUI!
+ */
+
 package Server;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Date;
-
 import data.SpecialCommands;
 import Server.chat.ServerControl;
 import Server.chat.ServiceChat;

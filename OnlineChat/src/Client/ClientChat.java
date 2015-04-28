@@ -1,9 +1,18 @@
+/*
+ * Name: Client
+ * Authors: Minh Hoang, Kiet Nguyen, Le Bui, Quang Nguyen
+ * 
+ * Program Overview:
+ * 		This is the client with a fixed port number to connect to one and only one designed server.
+ * 		When getting in the client, you will need to provide a ID (a name for your client).
+ * 		
+ */
+
 package Client;
 import Client.chat.Client;
 import Client.chat.ClientChatControl;
 
 public class ClientChat {
-	
 	
 	private final int MAX = 14;
 	private Client[] clients = new Client [MAX];
