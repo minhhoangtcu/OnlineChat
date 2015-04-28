@@ -1,13 +1,16 @@
 package Server.chat;
 import java.awt.BorderLayout;
 import java.awt.Color;
+
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ServerView extends JFrame {
 	JTextField input;
 	JTextArea output;
+	JScrollPane scroller;
 	
 	public static void main(String[] args) {
 		ServerView view = new ServerView();
@@ -25,16 +28,18 @@ public class ServerView extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
-		getContentPane().setLayout(null);
+		setLayout(null);
 		getContentPane().setBackground(Color.BLACK);
 	}
 	
 	public void setUpTextArea() {
+		scroller = new JScrollPane();
 		output = new JTextArea();
-		output.setBounds(10, 11, 574, 513);
+		scroller.setViewportView(output);
+		scroller.setBounds(10, 11, 574, 513);
 		output.setBackground(Color.DARK_GRAY);
 		output.setForeground(Color.WHITE);
-		getContentPane().add(output, BorderLayout.CENTER);
+		add(scroller, BorderLayout.CENTER);
 	}
 
 	public void setUpInput() {
@@ -43,6 +48,6 @@ public class ServerView extends JFrame {
 		input.setForeground(Color.WHITE);
 		input.setBounds(10, 535, 574, 25);
 		input.setColumns(10);
-		getContentPane().add(input);
+		add(input);
 	}
 }
