@@ -1,4 +1,5 @@
 package Client.chat;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -18,6 +19,8 @@ public class ClientChatControl implements MouseListener, ActionListener {
 	
 	public void addTab(String title, Client client) {
 		view.tabbedPane.addTab(title, client.control.view);
+		view.tabbedPane.setBackground(view.PURPLE);
+		view.tabbedPane.setForeground(Color.WHITE);
 		setUpListenerInsideTabbedPane(client);
 	}
 	
