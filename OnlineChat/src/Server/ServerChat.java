@@ -20,7 +20,7 @@ public class ServerChat {
 	ServerSocket server;
 	ServerControl control;
 	final int PORT = 6969;
-	private int currentClient;
+	private int numberOfClients;
 	
 	public static void main(String[] args) {
 		ServerChat server = new ServerChat();
@@ -30,12 +30,12 @@ public class ServerChat {
 	public ServerChat() {
 		services = new ArrayList<ServiceChat> ();
 		control = new ServerControl(this);
-		currentClient = 0;
+		numberOfClients = 0;
 		control.appendText("Server started. Type \"" + SpecialCommands.help + "\" to show more commands. \n");
 		try {
 			server = new ServerSocket(PORT);
-			System.out.println("Server initiated");
 		} catch (IOException e) {
+			// TODO properly handle the error
 			e.printStackTrace();
 		}
 	}
@@ -58,8 +58,8 @@ public class ServerChat {
 	public void startClients() throws IOException{
 		 while (true) {
 			 Socket client = server.accept();
-			 ServiceChat service = new ServiceChat(client, this, currentClient);
-			 currentClient++;
+			 ServiceChat service = new ServiceChat(client, this, numberOfClients);
+			 numberOfClients++;
 			 addClientIntoServicesAndStartIt(service);
 		 }
 	}
@@ -68,7 +68,7 @@ public class ServerChat {
 		services.add(service);
 		Thread t = new Thread(service);
 		t.start();
-		control.appendText("Client " + service.getID() + " connected");
+		control.appendText(service.getName() + "(ID: "+ service.getID() + ") connected");
 	}
 	
 	/*
@@ -99,30 +99,23 @@ public class ServerChat {
 	 * Check if the list of services to see if its client has the client ID or not 
 	 */
 	public boolean containClientID(int clientID) {
-		for (ServiceChat service: services) {
-			if (clientID == service.getID()) {
-				return true;
-			}
-		}
+		for (ServiceChat service: services)
+			if (clientID == service.getID()) return true;
 		return false;
 	}
 	
 	public ServiceChat getServiceWithThisID(int clientID) {
-		for (ServiceChat service: services) {
-			if (clientID == service.getID()) {
+		for (ServiceChat service: services)
+			if (clientID == service.getID())
 				return service;
-			}
-		}
-		return null;
+		return null; // TODO figure out a way to not return null
 	}
 	
 	public String getNameOfThisServiceWithThisID(int clientID) {
-		for (ServiceChat service: services) {
-			if (clientID == service.getID()) {
+		for (ServiceChat service: services)
+			if (clientID == service.getID())
 				return service.getName();
-			}
-		}
-		return null;
+		return null; // TODO figure out a way to not return null
 	}
 	
 	public void removeFromServices(ServiceChat service) {
