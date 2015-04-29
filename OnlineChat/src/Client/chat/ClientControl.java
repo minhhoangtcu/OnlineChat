@@ -12,6 +12,9 @@ public class ClientControl implements MouseListener{
 	Client client;
 	private boolean isConnect;
 	
+	/*/
+	 *Handle action listener, mouse listener of client class.
+	 */
 	public ClientControl(Client client) {
 		isConnect = false;
 		this.client = client;

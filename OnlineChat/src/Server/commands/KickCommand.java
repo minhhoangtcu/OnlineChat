@@ -6,7 +6,7 @@ import Server.chat.ServiceChat;
 
 public class KickCommand {
 
-	// TODO fix this command. This does not work well. Cannot get the name of the client 
+	//kick specific user out of the server
 	public void executeCommand(ServerControl control, ServerChat server, int clientID) {
 		ServiceChat service = server.getServiceWithThisID(clientID);
 		//server.printAll(clientName + "GOT KICKED OUT");

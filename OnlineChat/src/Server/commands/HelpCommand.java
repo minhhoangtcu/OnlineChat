@@ -4,6 +4,7 @@ import data.SpecialCommands;
 
 public class HelpCommand {
 	
+	//Display the available options for special commands when typed "HELP"
 	public void executeCommand(ServerControl control) {
 		String text = "\n"
 			+ SpecialCommands.kick.toUpperCase() + "\t kick a client out of the system. \n"

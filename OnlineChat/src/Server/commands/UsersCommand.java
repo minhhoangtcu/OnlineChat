@@ -6,7 +6,7 @@ import Server.chat.ServiceChat;
 
 public class UsersCommand {
 	
-	// TODO fix this also. Cannot get name from service
+	//display all the connected clients
 	public void executeCommand(ServerControl control, ServerChat server) {
 		for (ServiceChat service: server.services) {
 			control.appendText(service.getName() + " (" + service.getID() + ")");

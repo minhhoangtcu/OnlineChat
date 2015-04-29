@@ -15,14 +15,11 @@ public class Client {
 	private String host;
 	ClientControl control;
 	
-	public static void main(String[] args) {
-		new Client();
-	}
-	
 	public Client() {
 		control = new ClientControl(this);
 	}
 	
+	//Connect to the server
 	public void connect() {
 		setNameAndHost();
 		if (isLegit(name, host)) {
@@ -34,11 +31,13 @@ public class Client {
 		}
 	}
 	
+	//Get the name of host and ID of client
 	private void setNameAndHost() {
 		host = control.view.tfSever.getText();
 		name = control.view.tfID.getText();
 	}
 	
+	//Check if the name and host typed are valid 
 	public boolean isLegit(String name, String host) {
 		String[] nameSeperated = name.split(" ");
 		if (host.equals("") || name.equals("") || (nameSeperated.length > 1))
@@ -46,6 +45,7 @@ public class Client {
 		else return true;
 	}
 	
+	//Create new socket, and then pass it to the thread and start it
 	private void connectAndStartReadingThread() {
 		try{
 			socket = new Socket(host, PORT);
@@ -61,6 +61,7 @@ public class Client {
 		thread.start();
 	}
 	
+	//disconnect by interrupting the thread
 	public void disconnect() {
 		thread.interrupt();
 		try{
@@ -75,6 +76,7 @@ public class Client {
 		changeViewAfterDisconnect();
 	}
 	
+	//send all the chat content up the server
 	public void send() {
 		try {
 			out.println(control.view.userInput.getText());
@@ -83,15 +85,18 @@ public class Client {
 		changeViewAfterSend();
 	}
 	
+	//get the name of the thread
 	public String getName() {
 		return name;
 	}
 	
+	//send the name of the thread to the server
 	public void sendName() {
 		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName + " " +name);
 		out.flush();
 	}
 	
+	//Change the view after Connect
 	private void changeViewAfterConnect() {
 		control.view.sendButton.setEnabled(true);
 		control.view.sendButton.setContentAreaFilled(true);
@@ -102,6 +107,7 @@ public class Client {
 		control.view.tfID.setEnabled(false);
 	}
 	
+	//Change view after disconnect
 	private void changeViewAfterDisconnect() {
 		control.view.sendButton.setEnabled(false);
 		control.view.sendButton.setContentAreaFilled(false);
@@ -112,6 +118,7 @@ public class Client {
 		control.view.tfID.setEnabled(true);
 	}
 	
+	//Change view after Send
 	private void changeViewAfterSend() {
 		control.view.userInput.setText("");
 	}

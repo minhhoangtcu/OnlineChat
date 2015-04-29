@@ -17,6 +17,7 @@ public class ServerControl implements ActionListener{
 		view.input.addActionListener(this);
 	}
 
+	//Handle action listeners of the buttons
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object event = e.getSource();
@@ -32,6 +33,7 @@ public class ServerControl implements ActionListener{
 		view.output.append(text + "\n");
 	}
 	
+	// Handle the special commands
 	public void checkIfInputIsSpecialThenProceed(String text) {
 		String[] inputs = text.split(" ");
 		String firstLetter = inputs[0];
@@ -46,19 +48,23 @@ public class ServerControl implements ActionListener{
 		}
 	}
 	
+	//get the client ID
 	private int getClientID(String text) throws NumberFormatException{
 		int number = Integer.parseInt(text);
 		return number;
 	}
 	
+	//do Help command in server
 	private void doHelp() {
 		new HelpCommand().executeCommand(this);
 	}
 	
+	//do log Command	
 	private void doLog() {
 		new LogCommand().executeCommand(this);
 	}
 	
+	//do kick command
 	private void doKick(String[] inputs) {
 		String firstLetter = inputs[0];
 		firstLetter = firstLetter.toLowerCase();
@@ -73,6 +79,7 @@ public class ServerControl implements ActionListener{
 		
 	}
 	
+	//return all the users connected.
 	private void doUsers() {
 		new UsersCommand().executeCommand(this, server);
 	}

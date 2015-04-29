@@ -65,6 +65,7 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		// TODO Auto-generated method stub
 	}
 	
+	// Handle action listeners of buttons 
 	public void actionPerformed(ActionEvent e) {
 		Object event = e.getSource();
 		int index = view.tabbedPane.getSelectedIndex();
@@ -80,15 +81,18 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		}
 	}
 	
+	//Set the title of the Tab
 	private void setTitleForTab(int index, String s) {
 		view.tabbedPane.setTitleAt(index, s);
 	}
 	
+	//A button that initiates a new tab, maximum 7 
 	private void createReadyTab () {
 		clientChat.addClient();
 		addTab("", clientChat.returnClient(clientChat.returnNumberOfClients() - 1));
 	}
 	
+	//Method that remove the tab of the chat content
 	private void removeTab(Client client, int index) {
 		view.tabbedPane.remove(client.control.view);
 		clientChat.removeClient(index);
