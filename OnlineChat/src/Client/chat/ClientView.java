@@ -97,7 +97,6 @@ public class ClientView extends JPanel{
 		lbSever = new JLabel("Sever");
 		lbSever.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbSever.setBounds(10, 315, 50, 14);
-		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lbSever.setForeground(PURPLE);
 		add(lbSever);
 	}
