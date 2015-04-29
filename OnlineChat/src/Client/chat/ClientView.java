@@ -1,5 +1,6 @@
 package Client.chat;
 import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -7,7 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 
 import java.awt.*;
+
 import javax.swing.border.LineBorder;
+import javax.swing.text.DefaultCaret;
 
 public class ClientView extends JPanel{
 	JTextArea result;
@@ -61,6 +64,8 @@ public class ClientView extends JPanel{
 		result.setLineWrap(true);
 		result.setEditable(false);
 		scroller = new JScrollPane();
+		DefaultCaret caret = (DefaultCaret)result.getCaret();
+	    caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
 		result.setBorder(new LineBorder(new Color(122, 0, 163), 1));
 		scroller.setViewportView(result);
 		scroller.setBounds(10, 11, 467, 258);

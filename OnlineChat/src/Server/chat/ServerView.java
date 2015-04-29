@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 public class ServerView extends JFrame {
 	JTextField input;
@@ -37,6 +38,8 @@ public class ServerView extends JFrame {
 		output = new JTextArea();
 		scroller.setViewportView(output);
 		scroller.setBounds(10, 11, 574, 513);
+		DefaultCaret caret = (DefaultCaret)output.getCaret();
+	    caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
 		output.setBackground(Color.DARK_GRAY);
 		output.setForeground(Color.WHITE);
 		add(scroller, BorderLayout.CENTER);
