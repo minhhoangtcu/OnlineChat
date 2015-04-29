@@ -28,7 +28,7 @@ public class ClientChatView extends JFrame {
 	 */
 	public ClientChatView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 510, 430);
+		setBounds(100, 100, 510, 415);
 		setTitle("Client Chat");
 		setVisible(true);
 		contentPane = new JPanel();
@@ -38,6 +38,8 @@ public class ClientChatView extends JFrame {
 		setContentPane(contentPane);
 		setColorTheme();
 		tabbedPane = new JTabbedPane();
+		tabbedPane.setBackground(PURPLE);
+		tabbedPane.setForeground(Color.WHITE);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 	

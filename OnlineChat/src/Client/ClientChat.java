@@ -49,7 +49,6 @@ public class ClientChat {
 			clients[i] = clients[i + 1];
 		}
 		numberOfClients--;
-		
 	}
 	
 	public int returnNumberOfClients () {

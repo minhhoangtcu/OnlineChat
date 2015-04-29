@@ -27,7 +27,7 @@ public class Client {
 		setNameAndHost();
 		if (isLegit(name, host)) {
 			connectAndStartReadingThread();
-			changeViewAfterConnect(name);
+			changeViewAfterConnect();
 		}
 		else {
 			control.view.result.append("INVALID NAME. NAME MUST NOT HAVE SPACE. NAME MUST NOT EMPTY \n");
@@ -39,7 +39,7 @@ public class Client {
 		name = control.view.tfID.getText();
 	}
 	
-	private boolean isLegit(String name, String host) {
+	public boolean isLegit(String name, String host) {
 		String[] nameSeperated = name.split(" ");
 		if (host.equals("") || name.equals("") || (nameSeperated.length > 1))
 			return false;
@@ -57,7 +57,7 @@ public class Client {
 			control.view.errors.setText(ioe.getMessage());
 		}
 		thread = new ClientReadThread(in, control.view.result, this);
-		thread.setName("Reading Thread for " + name);
+		thread.setName("Reading Thread for " + name);			// why Reading Thread for???
 		thread.start();
 	}
 	
@@ -76,8 +76,10 @@ public class Client {
 	}
 	
 	public void send() {
-		out.println(control.view.userInput.getText());
-		out.flush();
+		try {
+			out.println(control.view.userInput.getText());
+			out.flush();
+		} catch (NullPointerException e) {}
 		changeViewAfterSend();
 	}
 	
@@ -90,7 +92,7 @@ public class Client {
 		out.flush();
 	}
 	
-	private void changeViewAfterConnect(String name) {
+	private void changeViewAfterConnect() {
 		control.view.sendButton.setEnabled(true);
 		control.view.sendButton.setContentAreaFilled(true);
 		control.view.connectButton.setText("Disconnect");
