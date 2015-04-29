@@ -89,12 +89,11 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		if (tabCount == 1) {
 			createReadyTab();
 			setTitleForTab(0, "New Tab");
-		} else if(tabCount == clientChat.returnNumberOfClients()) {
+		} else if (index == tabCount - 1) {
+			view.tabbedPane.setSelectedIndex(tabCount - 2);
+		} else if (index == tabCount) {
 			createReadyTab();
 			setTitleForTab(tabCount - 2, "New Tab");
-		}
-		if (index == tabCount - 1) {
-			view.tabbedPane.setSelectedIndex(tabCount - 2);
 		}
 	}
 }

@@ -55,4 +55,8 @@ public class ClientChat {
 	public int returnNumberOfClients () {
 		return numberOfClients;
 	}
+	
+	public int returnMax() {
+		return MAX;
+	}
 }
