@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 
-public class ClientControl implements MouseListener {
+public class ClientControl implements MouseListener, ActionListener{
 	
 	ClientView view;
 	Client client;
@@ -26,6 +26,10 @@ public class ClientControl implements MouseListener {
 		view.userInput.addMouseListener(this);
 		view.tfSever.addMouseListener(this);
 		view.tfID.addMouseListener(this);
+		view.connectButton.addActionListener(this);
+		view.sendButton.addActionListener(this);
+		view.userInput.addActionListener(this);
+		view.tfID.addActionListener(this);
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -60,6 +64,19 @@ public class ClientControl implements MouseListener {
 
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+//		Object event = e.getSource();
+//		if (event.equals(view.connectButton) && !isConnect || event == view.tfID) {
+//			client.connect();
+//		}
+//		else if (event.equals(view.connectButton) && isConnect) {
+//			client.disconnect();
+//		}
+//		else if (event.equals(view.sendButton) || event == view.userInput) {
+//			client.send();
+//		}
 	}
 	
 	public void setConnected(boolean state) {

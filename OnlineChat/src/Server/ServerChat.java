@@ -68,7 +68,7 @@ public class ServerChat {
 		services.add(service);
 		Thread t = new Thread(service);
 		t.start();
-		control.appendText(service.getName() + "(ID: "+ service.getID() + ") connected");
+		control.appendText("Client ID:"+ service.getID() + " connected");
 	}
 	
 	/*
