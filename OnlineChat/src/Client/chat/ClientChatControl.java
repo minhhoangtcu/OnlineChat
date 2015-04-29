@@ -19,8 +19,6 @@ public class ClientChatControl implements MouseListener, ActionListener {
 	
 	public void addTab(String title, Client client) {
 		view.tabbedPane.addTab(title, client.control.view);
-		view.tabbedPane.setBackground(view.PURPLE);
-		view.tabbedPane.setForeground(Color.WHITE);
 		setUpListenerInsideTabbedPane(client);
 	}
 	
@@ -31,6 +29,8 @@ public class ClientChatControl implements MouseListener, ActionListener {
 	private void setUpListenerInsideTabbedPane(Client client) {
 		client.control.view.connectButton.addActionListener(this);
 		client.control.view.tfID.addActionListener(this);
+		client.control.view.sendButton.addActionListener(this);
+		client.control.view.userInput.addActionListener(this);
 	}
 	
 	public void mouseClicked(MouseEvent e) {
