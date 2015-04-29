@@ -38,6 +38,8 @@ public class ClientChatView extends JFrame {
 		setContentPane(contentPane);
 		setColorTheme();
 		tabbedPane = new JTabbedPane();
+		tabbedPane.setBackground(PURPLE);
+		tabbedPane.setForeground(Color.WHITE);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 	

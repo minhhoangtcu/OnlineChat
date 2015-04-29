@@ -29,7 +29,7 @@ public class ServiceChat implements Runnable {
 			requestName();
 			doService();
 			client.close();
-			//server.removeFromServices(this);
+			server.removeFromServices(this);
 		}
 		catch (IOException e) {
 			e.printStackTrace();

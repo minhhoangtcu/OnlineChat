@@ -84,8 +84,6 @@ public class ServerChat {
 		for (ServiceChat service: services) {
 			service.print(input, sendingService.getName());
 		}
-		
-		System.out.println(services.size());
 	}
 	
 	public void printAll(String input) {
