@@ -67,16 +67,16 @@ public class ClientControl implements MouseListener, ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		Object event = e.getSource();
-		if (event.equals(view.connectButton) && !isConnect || event == view.tfID) {
-			client.connect();
-		}
-		else if (event.equals(view.connectButton) && isConnect) {
-			client.disconnect();
-		}
-		else if (event.equals(view.sendButton) || event == view.userInput) {
-			client.send();
-		}
+//		Object event = e.getSource();
+//		if (event.equals(view.connectButton) && !isConnect || event == view.tfID) {
+//			client.connect();
+//		}
+//		else if (event.equals(view.connectButton) && isConnect) {
+//			client.disconnect();
+//		}
+//		else if (event.equals(view.sendButton) || event == view.userInput) {
+//			client.send();
+//		}
 	}
 	
 	public void setConnected(boolean state) {
