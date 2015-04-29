@@ -22,10 +22,13 @@ public class ClientControl implements MouseListener {
 	private void setUpListeners() {
 		view.connectButton.addMouseListener(this);
 		view.sendButton.addMouseListener(this);
+		view.privateButton.addMouseListener(this);
+		
 		view.result.addMouseListener(this);
 		view.userInput.addMouseListener(this);
 		view.tfSever.addMouseListener(this);
 		view.tfID.addMouseListener(this);
+		view.tfConnectTo.addMouseListener(this);
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -37,20 +40,24 @@ public class ClientControl implements MouseListener {
 		Object event = e.getSource();
 		if (event.equals(view.connectButton)) changeConnectButtonWhenEntered();
 		else if (event.equals(view.sendButton)) changeSendButtonWhenEntered();
+		else if (event.equals(view.privateButton)) changePrivateButtonWhenEntered();
 		else if (event.equals(view.result)) changeResultBorderWhenEntered();
 		else if (event.equals(view.userInput)) changeUserInputWhenEntered();
 		else if (event.equals(view.tfSever)) changeServerTFWhenEntered();
 		else if (event.equals(view.tfID)) changeIDTFWhenEntered();
+		else if (event.equals(view.tfConnectTo)) changeConnectToTFWhenEntered();
 	}
 
 	public void mouseExited(MouseEvent e) {
 		Object event = e.getSource();
 		if (event.equals(view.connectButton)) changeConnectButtonWhenExited();
 		else if (event.equals(view.sendButton)) changeSendButtonWhenExited();
+		else if (event.equals(view.privateButton)) changePrivateButtonWhenExited();
 		else if (event.equals(view.result)) changeResultBorderWhenExited();
 		else if (event.equals(view.userInput)) changeUserInputWhenExited();
 		else if (event.equals(view.tfSever)) changeServerTFWhenExited();
 		else if (event.equals(view.tfID)) changeIDTFWhenExited();
+		else if (event.equals(view.tfConnectTo)) changeConnectToTFWhenExited();
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -86,6 +93,16 @@ public class ClientControl implements MouseListener {
 		view.sendButton.setBackground(view.PURPLE);
 	}
 	
+	private void changePrivateButtonWhenEntered() {
+		view.privateButton.setBackground(view.LIGHTPURPLE);
+	}
+	
+	private void changePrivateButtonWhenExited() {
+		view.privateButton.setBackground(view.PURPLE);
+	}
+
+	
+	
 	private void changeResultBorderWhenEntered() {
 		view.result.setBorder(BorderFactory.createLineBorder(view.LIGHTPURPLE,1));
 	}
@@ -118,5 +135,12 @@ public class ClientControl implements MouseListener {
 		view.tfID.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
 	}
 
+	private void changeConnectToTFWhenEntered() {
+		view.tfConnectTo.setBorder(BorderFactory.createLineBorder(view.LIGHTPURPLE,1));
+	}
+	
+	private void changeConnectToTFWhenExited() {
+		view.tfConnectTo.setBorder(BorderFactory.createLineBorder(view.PURPLE, 1));
+	}
 }
 

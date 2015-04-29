@@ -31,6 +31,8 @@ public class ClientChatControl implements MouseListener, ActionListener {
 		client.control.view.tfID.addActionListener(this);
 		client.control.view.sendButton.addActionListener(this);
 		client.control.view.userInput.addActionListener(this);
+		client.control.view.privateButton.addActionListener(this);
+		client.control.view.tfConnectTo.addActionListener(this);
 	}
 	
 	public void mouseClicked(MouseEvent e) {

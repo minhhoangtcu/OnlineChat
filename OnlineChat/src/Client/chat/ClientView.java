@@ -17,11 +17,14 @@ public class ClientView extends JPanel{
 	JTextField userInput;
 	JTextField tfSever;
 	JTextField tfID;
+	JTextField tfConnectTo;
 	JButton connectButton;
 	JButton sendButton;
+	JButton privateButton;
 	JLabel errors;
 	private JLabel lbSever;
 	private JLabel lblID;
+	private JLabel connectTo;
 	private JScrollPane scroller;
 	final Color PURPLE = new Color (122, 0, 163),
 			LIGHTPURPLE = new Color (181, 113, 204);
@@ -47,6 +50,9 @@ public class ClientView extends JPanel{
 		setUpServerTF();
 		setUpIDLabel();
 		setUpIDTF();
+		setUpConnectToLabel();
+		setUpConnectToTF();
+		setUPPrivateButton();
 		setUpError();
 	}
 	
@@ -102,7 +108,6 @@ public class ClientView extends JPanel{
 		lbSever = new JLabel("Sever");
 		lbSever.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbSever.setBounds(10, 315, 50, 14);
-		lbSever.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lbSever.setForeground(PURPLE);
 		add(lbSever);
 	}
@@ -135,5 +140,30 @@ public class ClientView extends JPanel{
 	private void setUpError() {
 		errors = new JLabel();
 		add(errors);
+	}
+	
+	private void setUpConnectToLabel() {
+		connectTo = new JLabel("Connect To");
+		connectTo.setForeground(new Color(122, 0, 163));
+		connectTo.setFont(new Font("SansSerif", Font.BOLD, 12));
+		connectTo.setBounds(10, 347, 78, 14);
+		add(connectTo);
+	}
+	
+	private void setUpConnectToTF() {
+		tfConnectTo = new JTextField();
+		tfConnectTo.setToolTipText("type an online client");
+		tfConnectTo.setColumns(10);
+		tfConnectTo.setBorder(BorderFactory.createLineBorder(PURPLE,1));
+		tfConnectTo.setBounds(98, 344, 256, 20);
+		add(tfConnectTo);
+	}
+	
+	private void setUPPrivateButton() {
+		privateButton = new JButton("Private");
+		privateButton.setForeground(Color.WHITE);
+		privateButton.setBackground(new Color(122, 0, 163));
+		privateButton.setBounds(364, 341, 113, 23);
+		add(privateButton);
 	}
 }

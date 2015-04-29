@@ -28,7 +28,7 @@ public class ClientChatView extends JFrame {
 	 */
 	public ClientChatView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 510, 415);
+		setBounds(100, 100, 510, 445);
 		setTitle("Client Chat");
 		setVisible(true);
 		contentPane = new JPanel();
