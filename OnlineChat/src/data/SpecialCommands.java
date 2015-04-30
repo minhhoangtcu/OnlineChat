@@ -3,7 +3,7 @@ package data;
  * This class stores a lot of keywords and data.
  */
 public class SpecialCommands {
-	
+	// special commands to do special jobs such as kick, log, and get the number of users
 	public static String getName = "getName";
 	public static String help = "help";
 	public static String log = "log";

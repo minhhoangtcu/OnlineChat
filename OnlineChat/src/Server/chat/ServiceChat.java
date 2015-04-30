@@ -16,12 +16,14 @@ public class ServiceChat implements Runnable {
 	private int clientID;
 	private String clientName;
 	
+	//Create a constructor
 	public ServiceChat(Socket client, ServerChat server, int clientID) {
 		this.client = client;
 		this.server = server;
 		this.clientID = clientID;
 	}
 
+	//method to run the thread 
 	public void run() {
 		try {
 			in  = new Scanner(client.getInputStream());
@@ -35,7 +37,7 @@ public class ServiceChat implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+	//method to return the input to the client associated with this thread
 	public void print(String input, String name) {
 		String output = "";
 		if (clientName.equals(name)) output += "> ";
@@ -44,24 +46,29 @@ public class ServiceChat implements Runnable {
 		out.flush();
 	}
 	
+	//return the input to the client
 	public void print(String input) {
 		out.println(input);
 		out.flush();
 	}
 	
+	//get name of the client
 	public String getName() {
 		return clientName;
 	}
 	
+	//get id of the client
 	public int getID() {
 		return clientID;
 	}
 
+	//request the name of the client when firt run
 	private void requestName() {
 		out.println(SpecialCommands.KEYWORD + SpecialCommands.getName);
 		out.flush();
 	}
 	
+	//receive input from the client's output
 	private void doService() {
 		String input;
 		try {
@@ -73,6 +80,7 @@ public class ServiceChat implements Runnable {
 		}
 	}
 
+	//manipulate the input received
 	private void executeInput(String input) {
 		String[] inputs = input.split(" ");
 		String firstLetter = inputs[0];

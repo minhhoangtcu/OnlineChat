@@ -1,10 +1,33 @@
-/*
- * Program: Server
- * Authors: Minh Hoang, Quang Nguyen, Kiet Nguyen, Le Bui
- * 
- * Program Overview:
- * 		This is a server. It has an GUI!
+/**************************************************************************/
+/*  Program Name:    Lab# 4                                               */
+/*                                                                        */
+/*  Student Name:    Quang Nguyen,Minh Hoang, Kiet Nguyen, Le Bui         */
+/*  Semester:        Spring,  2015                                        */
+/*  Class & Section: CoSc 20203                                           */
+/*  Instructor:      Dr. Rinewalt Dick                                    */
+/*  Due Date:        April 29, 2015                                       */
+/*                                                                        */
+/*  Program Overview:                                                     */
+/*      This applet use socket and multi-threading to create a server,    */
+/*receive the chat content from each client connected and create a thread */
+/*to handle new client chat's customer.
  */
+/* */
+/*                                                                        */
+/*                                                                        */
+/*  Program Limitations:                                                  */
+/*      (1) No private chat function available yet.                       */
+/*      (2) Cannot handle video, emoji, image files yet                   */
+/*                                                                        */
+/*  Programme Strength:                                                   */
+/* 		(1) It can carry out special function such as kick, get the number*/
+/*of users, get the log chat content                                      */
+/*      (2) It has a GUI                                                  */
+/*                                                                        */
+/*  Significant Program Variables:                                        */
+/*     socket, thread, ServerChat.                                        */ 
+
+/**************************************************************************/
 
 package Server;
 import java.io.IOException;
