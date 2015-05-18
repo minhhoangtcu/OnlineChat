@@ -72,7 +72,9 @@ public class ServiceChat implements Runnable {
 	private void doService() {
 		String input;
 		try {
-			while ((input = in.nextLine()) != null) {
+			while (in.hasNext()) {
+				input = in.nextLine();
+			//while ((input = in.nextLine()) != null) {
 				executeInput(input);
 			}
 		} catch (NoSuchElementException | IllegalStateException e) {
